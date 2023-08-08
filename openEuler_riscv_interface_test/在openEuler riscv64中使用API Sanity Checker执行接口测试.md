@@ -34,6 +34,12 @@ $ cd api-sanity-checker
 $ make install prefix=/usr
 ````
 
+执行以下命令来确认api sanity checker是否可以正常运行
+
+````
+$ api-sanity-checker -test
+````
+
 #### 3. 执行测试
 
 为了生成，构建和运行测试，需要提供所要测试的C/C++库版本的XML描述符。这是一个简单的XML文件，其中指定了版本号、头文件和共享库的路径，以及其他一些可选信息，例如：VERSION.xml是一个XML描述符，内容如下：
