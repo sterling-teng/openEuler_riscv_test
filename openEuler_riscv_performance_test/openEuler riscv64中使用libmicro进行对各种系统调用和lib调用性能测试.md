@@ -2,7 +2,7 @@
 
 #### 1. libmicro介绍
 
-libmicro是用来衡量各种统调用和库调用性能的微基准工具
+libmicro是用来衡量各种系统调用和库调用性能的微基准工具
 
 #### 2. 在openEuler riscv64中使用libmicro
 
