@@ -113,3 +113,6 @@ https://www.iozone.org/
 https://blog.csdn.net/IT_xiao_bai0516/article/details/128646544
 
 https://wenku.baidu.com/view/d039d301bed5b9f3f90f1c21.html?_wkts_=1705815097140&bdQuery=iozone
+
+https://gitee.com/openeuler/QA/blob/master/openEuler%E7%A4%BE%E5%8C%BA%E6%B5%8B%E8%AF%95%E8%83%BD%E5%8A%9B%E6%89%A7%E8%A1%8C%E6%8C%87%E5%8D%97/openEuler%E7%A4%BE%E5%8C%BA%E6%B5%8B%E8%AF%95%E8%83%BD%E5%8A%9B%E6%89%A7%E8%A1%8C%E6%8C%87%E5%8D%97.md#23iozone
+
