@@ -225,3 +225,6 @@ $ api-sanity-checker -lib NAME -d VERSION.xml -gen -build -run
 https://lvc.github.io/api-sanity-checker/
 
 https://github.com/lvc/api-sanity-checker
+
+https://github.com/lvc/abi-compliance-checker
+
