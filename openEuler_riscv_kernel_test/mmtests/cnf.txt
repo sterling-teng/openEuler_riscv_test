@@ -1,0 +1,10 @@
+config-buildtest-hpc-blas
+config-buildtest-hpc-cmake
+config-buildtest-hpc-fftw
+config-buildtest-hpc-gmp
+config-buildtest-hpc-metis
+config-buildtest-hpc-mpfr
+config-buildtest-hpc-revocap
+config-db-sqlite-insert-small
+config-example-tuning-sysctl
+config-functional-ltp-containers
