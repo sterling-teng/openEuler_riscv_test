@@ -13,9 +13,8 @@ summary() {
 	echo "Total: $total Passed: $passed Failed: $failed"
 	exit
 }
-array=`find . -type f -path *.c`
-length=${#array[@]}
-echo "array length: $length"
+array=($(find . -type f -path *.c))
+echo "array length: ${#array[@]}"
 for src in `find . -type f -path *.c`
 do
 	if ! ${CC} $src -c -o ${src}.o &> ./log/$(basename $src).log; then
