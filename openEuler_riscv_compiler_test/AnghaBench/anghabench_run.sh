@@ -15,6 +15,12 @@ summary() {
 }
 array=($(find . -type f -path *.c))
 echo "array length: ${#array[@]}"
+
+if [ -d "./log" ]; then
+   rm -rf log
+fi
+mkdir log
+
 for src in `find . -type f -path *.c`
 do
 	if ! ${CC} $src -c -o ${src}.o &> ./log/$(basename $src).log; then
@@ -26,6 +32,6 @@ do
 		passed=$(($passed + 1))
 	fi
 	total=$(($total + 1))
-	summary
+	echo "Total: $total Passed: $passed Failed: $failed"
 done
 summary
