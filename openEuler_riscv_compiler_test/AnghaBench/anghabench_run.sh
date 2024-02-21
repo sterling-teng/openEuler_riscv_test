@@ -14,10 +14,14 @@ summary() {
 }
 
 create_logdir() {
-    if [ -d "./log" ]; then
-        rm -rf log
+    if [ -d "./log_success" ]; then
+        rm -rf log_success
     fi
-    mkdir log
+	if [ -d "./log_failure" ]; then
+        rm -rf log_failure
+    fi
+    mkdir log_success
+	mkdir log_failure
 }
 
 run() {
@@ -25,7 +29,7 @@ run() {
     echo "array length: ${#array[@]}"
 	for src in ${array[@]}
 	do
-	    if ! ${CC} $src -c -o ${src}.o &> ./log/$(basename $src).log; then
+	    if ! ${CC} $src -c -o ${src}.o > ./log_success/$(basename $src).log 2> ./log_failure/$(basename $src).log; then
 		    echo "${RED}Compilation Error${NONE} $src"
 		    failed=$(($failed + 1))
         else
