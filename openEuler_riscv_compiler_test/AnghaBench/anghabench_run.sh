@@ -37,7 +37,7 @@ run() {
 		    rm ${src}.o
 		    passed=$(($passed + 1))
 	    fi
-	        total=$(($total + 1))
+	    total=$(($total + 1))
 	    summary
     done
 }
