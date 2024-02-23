@@ -25,13 +25,13 @@ run() {
     echo "array length: ${#array[@]}"
 	for src in ${array[@]}
 	do
-	    if ! $CC $src -c -o ${src}.o > ${src}.log 2> ./log_failure/$(basename $src).log; then
+	    if ! $CC $src -c -o ${src}.o &> ./log_failure/$(basename $src).log; then
 		    echo "${RED}Compilation Error${NONE} $src"
 		    failed=$(($failed + 1))
         else
             echo "${GREEN}Passed${NONE} $src"
-		    rm ${src}.o
-			rm ${src}.log
+		    rm -rf ${src}.o
+			rm -rf ./log_failure/$(basename $src).log
 		    passed=$(($passed + 1))
 	    fi
 	    total=$(($total + 1))
