@@ -13,7 +13,7 @@ summary() {
 }
 
 install_gcc() {
-	yum install -y gcc g-g++ g-fortran
+	yum install -y gcc gcc-g++ gcc-fortran
 }
 
 create_logdir() {
