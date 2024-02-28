@@ -13,6 +13,10 @@ summary() {
 	echo "Total: $total Passed: $passed Failed: $failed"
 }
 
+gcc_install() {
+    yum install -y gcc
+}
+
 create_logdir() {
     if [ -d "./anghaLeaves_failure_log" ]; then
         rm -rf anghaLeaves_failure_log
@@ -21,7 +25,7 @@ create_logdir() {
         rm -rf anghaMath_failure_log
     fi
     
-    mkdir nghaLeaves_failure_log
+    mkdir anghaLeaves_failure_log
 	mkdir anghaMath_failure_log
 }
 
@@ -34,10 +38,10 @@ run() {
 
     for src in ${anghaleaves_array[@]}
     do
-        if ! $CC $src -o ${src}.out &> ./nghaLeaves_failure_log/$(basename $src).log; then
+        if ! $CC $src -o ${src}.out &> ./anghaLeaves_failure_log/$(basename $src).log; then
             echo "${RED}Compilation Error${NONE} $src"
             failed=$(($failed + 1))
-        elif ! (${src}.out && ${src}.out 0) &>> ./nghaLeaves_failure_log/$(basename $src).log; then
+        elif ! (${src}.out && ${src}.out 0) &>> ./anghaLeaves_failure_log/$(basename $src).log; then
               echo "${RED}Test Run Failed${NONE} $src"
               failed=$(($failed + 1))
         else
@@ -69,6 +73,7 @@ run() {
     done
 }
 
+gcc_install
 create_logdir
 run
 summary
