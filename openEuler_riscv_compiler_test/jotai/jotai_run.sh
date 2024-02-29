@@ -56,7 +56,8 @@ run() {
     
     for src in ${anghamath_array[@]}
     do
-        if ! $CC $src -o ${src}.out &> ./anghaMath_failure_log/$(basename $src).log; then
+        $CC $src -o ${src}.out &> ./anghaMath_failure_log/$(basename $src).log
+        if [ ! -e ${src}.out ]; then
             echo "${RED}Compilation Error${NONE} $src"
             failed=$(($failed + 1))
         elif ! (${src}.out && ${src}.out 0) &>> ./anghaMath_failure_log/$(basename $src).log; then
