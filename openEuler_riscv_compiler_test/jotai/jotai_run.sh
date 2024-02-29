@@ -42,14 +42,14 @@ run() {
         if [ ! -e ${src}.out ]; then
             echo "${RED}Compilation Error${NONE} $src"
             failed=$(($failed + 1))
-        elif ! (${src}.out && ${src}.out 0) &>> ./anghaLeaves_failure_log/$(basename $src).log; then
-              echo "${RED}Test Run Failed${NONE} $src"
-              failed=$(($failed + 1))
-        else
+        elif  ${src}.out && ${src}.out 0 &>> ./anghaLeaves_failure_log/$(basename $src).log; then
               echo "${GREEN}Passed${NONE} $src"
               rm -rf ${src}.out
               rm -rf ./nghaLeaves_failure_log/$(basename $src).log
               passed=$(($passed + 1))
+        else
+              echo "${RED}Test Run Failed${NONE} $src"
+              failed=$(($failed + 1))
         fi
         total=$(($total + 1))
 	    summary
@@ -61,14 +61,14 @@ run() {
         if [ ! -e ${src}.out ]; then
             echo "${RED}Compilation Error${NONE} $src"
             failed=$(($failed + 1))
-        elif ! (${src}.out && ${src}.out 0) &>> ./anghaMath_failure_log/$(basename $src).log; then
-              echo "${RED}Test Run Failed${NONE} $src"
-              failed=$(($failed + 1))
-        else
+        elif ${src}.out && ${src}.out 0 &>> ./anghaMath_failure_log/$(basename $src).log; then
               echo "${GREEN}Passed${NONE} $src"
               rm -rf ${src}.out
               rm -rf ./anghaMath_failure_log/$(basename $src).log
               passed=$(($passed + 1))
+        else
+              echo "${RED}Test Run Failed${NONE} $src"
+              failed=$(($failed + 1))
         fi
         total=$(($total + 1))
 	    summary
