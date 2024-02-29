@@ -38,7 +38,8 @@ run() {
 
     for src in ${anghaleaves_array[@]}
     do
-        if ! $CC $src -o ${src}.out &> ./anghaLeaves_failure_log/$(basename $src).log; then
+        $CC $src -o ${src}.out &> ./anghaLeaves_failure_log/$(basename $src).log
+        if [ ! -e ${src}.out ]; then
             echo "${RED}Compilation Error${NONE} $src"
             failed=$(($failed + 1))
         elif ! (${src}.out && ${src}.out 0) &>> ./anghaLeaves_failure_log/$(basename $src).log; then
