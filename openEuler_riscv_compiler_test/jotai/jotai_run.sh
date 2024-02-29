@@ -30,8 +30,8 @@ create_logdir() {
 }
 
 run() {
-    anghaleaves_array=($(find benchmarks/anghaLeaves -type -f))
-    anghamath_array=($(find benchmarks/anghaMath -type -f))
+    anghaleaves_array=($(find benchmarks/anghaLeaves -type f))
+    anghamath_array=($(find benchmarks/anghaMath -type f))
     echo "anghaLeaves test case num: ${#anghaleaves_array[@]}"
     echo "anghaMath test case num: ${#anghamath_array[@]}"
     echo "total test case num: $[${#anghaleaves_array[@]}+${#anghamath_array[@]}]"
