@@ -45,7 +45,7 @@ run() {
                 echo "${RED}Compilation Error${NONE} $dirname"
             else
                 echo "./${compiler}_${optlevel}.out" >> log.txt
-                if ./${compiler}_${optlevel}.out &>> log.txt
+                if ./${compiler}_${optlevel}.out &>> log.txt; then
                     result_array+=$(./${compiler}_${optlevel}.out)
                     echo "./${compiler}_${optlevel}.out : $(./${compiler}_${optlevel}.out)" >> log.txt
                 else
