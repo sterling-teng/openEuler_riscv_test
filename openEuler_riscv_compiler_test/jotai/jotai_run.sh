@@ -47,7 +47,7 @@ run() {
             if ${src}.out 0 &>> ./anghaLeaves_failure_log/$(basename $src).log; then
                 echo "${GREEN}Passed${NONE} $src"
                 rm -rf ${src}.out
-                rm -rf ./nghaLeaves_failure_log/$(basename $src).log
+                rm -rf ./anghaLeaves_failure_log/$(basename $src).log
                 passed=$(($passed + 1))
             else
                 echo "${RED}Test Run Failed${NONE} $src"
