@@ -80,6 +80,6 @@ run() {
 
 gcc_install
 create_logdir
-run
+run $1
 summary
 exit
