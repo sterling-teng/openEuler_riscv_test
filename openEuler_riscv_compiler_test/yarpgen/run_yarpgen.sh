@@ -3,7 +3,7 @@
 RED=$(printf "\033[31m")
 GREEN=$(printf "\033[32m")
 NONE=$(printf "\033[39m")
-CC=g++
+compiler=g++
 
 total=0
 passed=0
