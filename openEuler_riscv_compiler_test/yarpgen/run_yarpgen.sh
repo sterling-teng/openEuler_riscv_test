@@ -37,9 +37,10 @@ run() {
         cat init.h func.cpp driver.cpp > test_random.cpp
         optlevel_array=(O0 O3)
         result_array=()
+        touch log.txt
         for optlevel in ${optlevel_array[@]}
         do
-            echo "$compiler -$optlevel test_random.cpp -o ${compiler}_${optlevel}.out" > log.txt
+            echo "$compiler -$optlevel test_random.cpp -o ${compiler}_${optlevel}.out" >> log.txt
             $compiler -$optlevel test_random.cpp -o ${compiler}_${optlevel}.out &>> log.txt
             if [ ! -e ${compiler}_${optlevel}.out ]; then
                 echo "${RED}Compilation Error${NONE} $dirname"
