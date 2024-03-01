@@ -30,7 +30,7 @@ create_logdir() {
 
 run() {
     for i in `seq $1`
-        string=$(../yarpgen) > /dev/null
+        string=$(../yarpgen)
         pattern='[0-9]+'
         dirname=seed_$(echo $string | grep -oE "$pattern")
         cat init.h func.cpp driver.cpp > test_random.cpp
