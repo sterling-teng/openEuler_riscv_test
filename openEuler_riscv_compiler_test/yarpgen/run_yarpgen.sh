@@ -44,6 +44,8 @@ run() {
             $compiler -$optlevel test_random.cpp -o gcc_${optlevel}_out &>> log.txt
             if [ ! -e gcc_${optlevel}_out ]; then
                 echo "${RED}Compilation Error${NONE} $dirname"
+                echo "Compilation Error" >> log.txt
+                continue
             else
                 echo "./gcc_${optlevel}_out" >> log.txt
                 if ./gcc_${optlevel}_out &>> log.txt; then
@@ -51,6 +53,7 @@ run() {
                     echo "./gcc_${optlevel}_out : $(./gcc_${optlevel}_out)" >> log.txt
                 else
                     echo "${RED}Test Run Failed${NONE} $dirname"
+                    echo "Test Run Failed" >> log.txt
                 fi
             fi
         done
