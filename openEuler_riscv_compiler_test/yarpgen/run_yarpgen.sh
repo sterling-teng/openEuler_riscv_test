@@ -40,15 +40,15 @@ run() {
         touch log.txt
         for optlevel in ${optlevel_array[@]}
         do
-            echo "$compiler -$optlevel test_random.cpp -o ${compiler}_${optlevel}.out" >> log.txt
-            $compiler -$optlevel test_random.cpp -o ${compiler}_${optlevel}.out &>> log.txt
-            if [ ! -e ${compiler}_${optlevel}.out ]; then
+            echo "$compiler -$optlevel test_random.cpp -o ${compiler}_${optlevel}_out" >> log.txt
+            $compiler -$optlevel test_random.cpp -o ${compiler}_${optlevel}_out &>> log.txt
+            if [ ! -e ${compiler}_${optlevel}_out ]; then
                 echo "${RED}Compilation Error${NONE} $dirname"
             else
-                echo "./${compiler}_${optlevel}.out" >> log.txt
-                if ./${compiler}_${optlevel}.out &>> log.txt; then
+                echo "./${compiler}_${optlevel}_out" >> log.txt
+                if ./${compiler}_${optlevel}_out &>> log.txt; then
                     result_array+=$(./${compiler}_${optlevel}.out)
-                    echo "./${compiler}_${optlevel}.out : $(./${compiler}_${optlevel}.out)" >> log.txt
+                    echo "./${compiler}_${optlevel}_out : $(./${compiler}_${optlevel}_out)" >> log.txt
                 else
                     echo "${RED}Test Run Failed${NONE} $dirname"
                 fi
