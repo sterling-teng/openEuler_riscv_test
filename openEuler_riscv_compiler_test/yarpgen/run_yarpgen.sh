@@ -47,7 +47,7 @@ run() {
             else
                 echo "./${compiler}_${optlevel}_out" >> log.txt
                 if ./${compiler}_${optlevel}_out &>> log.txt; then
-                    result_array+=$(./${compiler}_${optlevel}_out)
+                    result_array+=($(./${compiler}_${optlevel}_out))
                     echo "./${compiler}_${optlevel}_out : $(./${compiler}_${optlevel}_out)" >> log.txt
                 else
                     echo "${RED}Test Run Failed${NONE} $dirname"
