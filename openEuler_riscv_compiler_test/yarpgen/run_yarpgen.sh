@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set +e
+
 RED=$(printf "\033[31m")
 GREEN=$(printf "\033[32m")
 NONE=$(printf "\033[39m")
@@ -45,7 +47,6 @@ run() {
             if [ ! -e gcc_${optlevel}_out ]; then
                 echo "${RED}Compilation Error${NONE} $dirname"
                 echo "Compilation Error" >> log.txt
-                continue
             else
                 echo "./gcc_${optlevel}_out" >> log.txt
                 if ./gcc_${optlevel}_out &>> log.txt; then
