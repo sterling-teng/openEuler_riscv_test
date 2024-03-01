@@ -57,7 +57,7 @@ run() {
        
         if [ ${#result_array[@]} == 2 ]; then 
             if [ ${result_array[0]} == ${result_array[1]} ]; then
-                echo "${GREEN}Passed${NONE} $src"
+                echo "${GREEN}Passed${NONE} $dirname"
                 rm -rf ./*
                 passed=$(($passed + 1))
             else
