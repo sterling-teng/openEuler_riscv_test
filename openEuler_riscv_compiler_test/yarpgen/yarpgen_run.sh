@@ -30,6 +30,7 @@ create_logdir() {
 
 run() {
     for i in `seq $1`
+    do
         string=$(../yarpgen)
         pattern='[0-9]+'
         dirname=seed_$(echo $string | grep -oE "$pattern")
