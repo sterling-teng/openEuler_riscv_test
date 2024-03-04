@@ -53,7 +53,7 @@ $ export PATH=$JT_HOME/bin:$PATH
 ````
 $ yum install -y git subversion screen samba samba-client gcc gdb cmake automake lrzsz expect libX11* libxt* libXtst* libXt* libXrender* cache* cups* unzip* zip* freetype* mercurial numactl vim tar dejavu-fonts unix2dos dos2unix bc lsof net-tools
 ````
-
+##### 2.2 执行测试
 执行一个测试用例
 
 ````
