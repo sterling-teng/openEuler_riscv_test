@@ -20,7 +20,7 @@ OpenJDK Runtime Environment 21.9 (build 17.0.8+7)
 OpenJDK 64-Bit Server VM 21.9 (build 17.0.8+7, mixed mode, sharing)
 ````
 
-下载对应版本的openjdk源码 https://github.com/openjdk/jdk17u-dev/releases/tag/jdk-17.0.8%2B7，并解压
+下载对应版本的openjdk源码 https://github.com/openjdk/jdk17u-dev/releases/tag/jdk-17.0.8%2B7， 并解压
 
 ````
 $ wget https://github.com/openjdk/jdk17u-dev/archive/refs/tags/jdk-17.0.8+7.zip
