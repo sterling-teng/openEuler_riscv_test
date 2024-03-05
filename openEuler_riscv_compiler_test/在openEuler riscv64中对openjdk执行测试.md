@@ -2,7 +2,7 @@
 
 #### 1. Jtreg 介绍
 
-jtreg 是 openjdk 测试框架使用的测试工具，该测试框架主要用于单元测试和回归测试。
+jtreg 全称 Java Test Registry，是 openjdk 测试框架使用的测试工具，该测试框架主要用于单元测试和回归测试。
 
 #### 2. Jtreg 使用方法
 
