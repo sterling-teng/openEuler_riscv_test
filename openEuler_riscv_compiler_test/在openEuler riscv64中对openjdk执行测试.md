@@ -13,7 +13,7 @@ jtreg 全称 Java Test Registry，是 openjdk 测试框架使用的测试工具�
 安装 openjdk17
 
 ````
-$ yum install -y java-17-openjdk
+$ yum install -y java-17-openjdk*
 $ java -version
 openjdk version "17.0.8" 2023-07-18
 OpenJDK Runtime Environment 21.9 (build 17.0.8+7)
@@ -58,63 +58,131 @@ $ yum install -y git subversion screen samba samba-client gcc gdb cmake automake
 
 ````
 $ jtreg -va jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1/TestLargePageUseForAuxMemory.java
-Directory "JTwork" not found: creating
-Directory "JTreport" not found: creating
-Error: Compilation of extra property definition files failed.
-````
-
-无法正常执行测试
-
-下载一个编译好的 [riscv64 openjdk 17](https://builds.shipilev.net/openjdk-jdk17-dev/)，测试相同的测试用例：
-
-````
-$ wget https://builds.shipilev.net/openjdk-jdk17-dev/openjdk-jdk17-dev-linux-riscv64-server-release-gcc12-glibc2.36.tar.xz
-$ tar -xvf openjdk-jdk17-dev-linux-riscv64-server-release-gcc12-glibc2.36.tar.xz
-$ /root/jtreg/bin/jtreg -jdk:/root/jdk -va /root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1/TestLargePageUseForAuxMemory.java
-failed to get value for vm.cds.archived.java.heap
-java.lang.UnsatisfiedLinkError: 'boolean jdk.test.whitebox.WhiteBox.isJavaHeapArchiveSupported()'
-        at jdk.test.whitebox.WhiteBox.isJavaHeapArchiveSupported(Native Method)
-        at requires.VMProps.vmCDSForArchivedJavaHeap(VMProps.java:394)
-        at requires.VMProps$SafeMap.put(VMProps.java:72)
-        at requires.VMProps.call(VMProps.java:114)
-        at requires.VMProps.call(VMProps.java:60)
-        at com.sun.javatest.regtest.agent.GetJDKProperties.run(GetJDKProperties.java:80)
-        at com.sun.javatest.regtest.agent.GetJDKProperties.main(GetJDKProperties.java:54)
 --------------------------------------------------
 TEST: gc/g1/TestLargePageUseForAuxMemory.java
-TEST JDK: /root/jdk
+TEST JDK: /usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64
 
-ACTION: build -- Passed. All files up to date
+ACTION: build -- Passed. Build successful
 REASON: User specified action: run build sun.hotspot.WhiteBox 
-TIME:   0.039 seconds
+TIME:   31.706 seconds
 messages:
 command: build sun.hotspot.WhiteBox
 reason: User specified action: run build sun.hotspot.WhiteBox 
-started: Mon Mar 04 16:20:23 CST 2024
-finished: Mon Mar 04 16:20:23 CST 2024
-elapsed time (seconds): 0.039
+started: Wed Mar 13 19:29:37 CST 2024
+Library /test/lib:
+  compile: sun.hotspot.WhiteBox
+finished: Wed Mar 13 19:30:09 CST 2024
+elapsed time (seconds): 31.706
 
-ACTION: build -- Passed. All files up to date
+ACTION: compile -- Passed. Compilation successful
+REASON: .class file out of date or does not exist
+TIME:   31.548 seconds
+messages:
+command: compile /root/jdk17u-dev-jdk-17.0.8-7/test/lib/sun/hotspot/WhiteBox.java
+reason: .class file out of date or does not exist
+started: Wed Mar 13 19:29:37 CST 2024
+Additional options from @modules: --add-modules java.base --add-exports java.base/jdk.internal.misc=ALL-UNNAMED
+Mode: othervm
+finished: Wed Mar 13 19:30:09 CST 2024
+elapsed time (seconds): 31.548
+configuration:
+javac compilation environment
+  add modules: java.base                   
+  add exports: java.base/jdk.internal.misc ALL-UNNAMED
+  source path: /root/jdk17u-dev-jdk-17.0.8-7/test/lib 
+  class path:  /root/JTwork/classes/test/lib 
+
+rerun:
+cd /root/JTwork/scratch && \
+HOME=/root \
+LANG=C.UTF-8 \
+PATH=/bin:/usr/bin:/usr/sbin \
+    /usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/javac \
+        -J-Dtest.vm.opts= \
+        -J-Dtest.tool.vm.opts= \
+        -J-Dtest.compiler.opts= \
+        -J-Dtest.java.opts= \
+        -J-Dtest.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
+        -J-Dcompile.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
+        -J-Dtest.timeout.factor=1.0 \
+        -J-Dtest.root=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg \
+        -J-Dtest.name=gc/g1/TestLargePageUseForAuxMemory.java \
+        -J-Dtest.file=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1/TestLargePageUseForAuxMemory.java \
+        -J-Dtest.src=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1 \
+        -J-Dtest.src.path=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/jdk17u-dev-jdk-17.0.8-7/test/lib \
+        -J-Dtest.classes=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d \
+        -J-Dtest.class.path=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/JTwork/classes/test/lib \
+        -J-Dtest.modules=java.base/jdk.internal.misc \
+        @/root/JTwork/gc/g1/TestLargePageUseForAuxMemory.d/compile.0.jta
+STDOUT:
+STDERR:
+
+ACTION: build -- Passed. Build successful
 REASON: Named class compiled on demand
-TIME:   0.005 seconds
+TIME:   25.784 seconds
 messages:
 command: build jdk.test.lib.helpers.ClassFileInstaller
 reason: Named class compiled on demand
-started: Mon Mar 04 16:20:23 CST 2024
-finished: Mon Mar 04 16:20:23 CST 2024
-elapsed time (seconds): 0.005
+started: Wed Mar 13 19:30:09 CST 2024
+Library /test/lib:
+  compile: jdk.test.lib.helpers.ClassFileInstaller
+finished: Wed Mar 13 19:30:35 CST 2024
+elapsed time (seconds): 25.784
+
+ACTION: compile -- Passed. Compilation successful
+REASON: .class file out of date or does not exist
+TIME:   25.749 seconds
+messages:
+command: compile /root/jdk17u-dev-jdk-17.0.8-7/test/lib/jdk/test/lib/helpers/ClassFileInstaller.java
+reason: .class file out of date or does not exist
+started: Wed Mar 13 19:30:09 CST 2024
+Additional options from @modules: --add-modules java.base --add-exports java.base/jdk.internal.misc=ALL-UNNAMED
+Mode: othervm
+finished: Wed Mar 13 19:30:35 CST 2024
+elapsed time (seconds): 25.749
+configuration:
+javac compilation environment
+  add modules: java.base                   
+  add exports: java.base/jdk.internal.misc ALL-UNNAMED
+  source path: /root/jdk17u-dev-jdk-17.0.8-7/test/lib 
+  class path:  /root/JTwork/classes/test/lib 
+
+rerun:
+cd /root/JTwork/scratch && \
+HOME=/root \
+LANG=C.UTF-8 \
+PATH=/bin:/usr/bin:/usr/sbin \
+    /usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/javac \
+        -J-Dtest.vm.opts= \
+        -J-Dtest.tool.vm.opts= \
+        -J-Dtest.compiler.opts= \
+        -J-Dtest.java.opts= \
+        -J-Dtest.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
+        -J-Dcompile.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
+        -J-Dtest.timeout.factor=1.0 \
+        -J-Dtest.root=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg \
+        -J-Dtest.name=gc/g1/TestLargePageUseForAuxMemory.java \
+        -J-Dtest.file=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1/TestLargePageUseForAuxMemory.java \
+        -J-Dtest.src=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1 \
+        -J-Dtest.src.path=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/jdk17u-dev-jdk-17.0.8-7/test/lib \
+        -J-Dtest.classes=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d \
+        -J-Dtest.class.path=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/JTwork/classes/test/lib \
+        -J-Dtest.modules=java.base/jdk.internal.misc \
+        @/root/JTwork/gc/g1/TestLargePageUseForAuxMemory.d/compile.1.jta
+STDOUT:
+STDERR:
 
 ACTION: driver -- Passed. Execution successful
 REASON: User specified action: run driver jdk.test.lib.helpers.ClassFileInstaller sun.hotspot.WhiteBox 
-TIME:   5.581 seconds
+TIME:   4.672 seconds
 messages:
 command: driver jdk.test.lib.helpers.ClassFileInstaller sun.hotspot.WhiteBox
 reason: User specified action: run driver jdk.test.lib.helpers.ClassFileInstaller sun.hotspot.WhiteBox 
-started: Mon Mar 04 16:20:23 CST 2024
+started: Wed Mar 13 19:30:35 CST 2024
 Mode: othervm
 Additional options from @modules: --add-modules java.base --add-exports java.base/jdk.internal.misc=ALL-UNNAMED
-finished: Mon Mar 04 16:20:28 CST 2024
-elapsed time (seconds): 5.581
+finished: Wed Mar 13 19:30:39 CST 2024
+elapsed time (seconds): 4.672
 configuration:
 Boot Layer
   add modules: java.base                   
@@ -128,14 +196,14 @@ cd /root/JTwork/scratch && \
 HOME=/root \
 LANG=C.UTF-8 \
 PATH=/bin:/usr/bin:/usr/sbin \
-CLASSPATH=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar \
-    /root/jdk/bin/java \
+CLASSPATH=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar \
+    /usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java \
         -Dtest.vm.opts= \
         -Dtest.tool.vm.opts= \
         -Dtest.compiler.opts= \
         -Dtest.java.opts= \
-        -Dtest.jdk=/root/jdk \
-        -Dcompile.jdk=/root/jdk \
+        -Dtest.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
+        -Dcompile.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
         -Dtest.timeout.factor=1.0 \
         -Dtest.root=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg \
         -Dtest.name=gc/g1/TestLargePageUseForAuxMemory.java \
@@ -147,95 +215,150 @@ CLASSPATH=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u
         -Dtest.modules=java.base/jdk.internal.misc \
         --add-modules java.base \
         --add-exports java.base/jdk.internal.misc=ALL-UNNAMED \
-        com.sun.javatest.regtest.agent.MainWrapper /root/JTwork/gc/g1/TestLargePageUseForAuxMemory.d/driver.0.jta sun.hotspot.WhiteBox
+        com.sun.javatest.regtest.agent.MainWrapper /root/JTwork/gc/g1/TestLargePageUseForAuxMemory.d/driver.2.jta sun.hotspot.WhiteBox
 
-ACTION: build -- Passed. All files up to date
+ACTION: build -- Passed. Build successful
 REASON: Named class compiled on demand
-TIME:   0.003 seconds
+TIME:   50.857 seconds
 messages:
 command: build gc.g1.TestLargePageUseForAuxMemory
 reason: Named class compiled on demand
-started: Mon Mar 04 16:20:28 CST 2024
-finished: Mon Mar 04 16:20:28 CST 2024
-elapsed time (seconds): 0.003
+started: Wed Mar 13 19:30:39 CST 2024
+Test directory:
+  compile: gc.g1.TestLargePageUseForAuxMemory
+finished: Wed Mar 13 19:31:30 CST 2024
+elapsed time (seconds): 50.857
+
+ACTION: compile -- Passed. Compilation successful
+REASON: .class file out of date or does not exist
+TIME:   50.826 seconds
+messages:
+command: compile /root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1/TestLargePageUseForAuxMemory.java
+reason: .class file out of date or does not exist
+started: Wed Mar 13 19:30:39 CST 2024
+Additional options from @modules: --add-modules java.base --add-exports java.base/jdk.internal.misc=ALL-UNNAMED
+Mode: othervm
+finished: Wed Mar 13 19:31:30 CST 2024
+elapsed time (seconds): 50.826
+configuration:
+javac compilation environment
+  add modules: java.base                   
+  add exports: java.base/jdk.internal.misc ALL-UNNAMED
+  source path: /root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1 
+               /root/jdk17u-dev-jdk-17.0.8-7/test/lib 
+  class path:  /root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1 
+               /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d 
+               /root/JTwork/classes/test/lib 
+
+rerun:
+cd /root/JTwork/scratch && \
+HOME=/root \
+LANG=C.UTF-8 \
+PATH=/bin:/usr/bin:/usr/sbin \
+    /usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/javac \
+        -J-Dtest.vm.opts= \
+        -J-Dtest.tool.vm.opts= \
+        -J-Dtest.compiler.opts= \
+        -J-Dtest.java.opts= \
+        -J-Dtest.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
+        -J-Dcompile.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
+        -J-Dtest.timeout.factor=1.0 \
+        -J-Dtest.root=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg \
+        -J-Dtest.name=gc/g1/TestLargePageUseForAuxMemory.java \
+        -J-Dtest.file=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1/TestLargePageUseForAuxMemory.java \
+        -J-Dtest.src=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1 \
+        -J-Dtest.src.path=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/jdk17u-dev-jdk-17.0.8-7/test/lib \
+        -J-Dtest.classes=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d \
+        -J-Dtest.class.path=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/JTwork/classes/test/lib \
+        -J-Dtest.modules=java.base/jdk.internal.misc \
+        @/root/JTwork/gc/g1/TestLargePageUseForAuxMemory.d/compile.3.jta
+STDOUT:
+STDERR:
+/root/jdk17u-dev-jdk-17.0.8-7/test/lib/jdk/test/lib/process/ProcessTools.java:450: warning: [removal] AccessController in java.security has been deprecated and marked for removal
+                AccessController.doPrivileged((PrivilegedExceptionAction<Void>) () -> {
+                ^
+/root/jdk17u-dev-jdk-17.0.8-7/test/lib/jdk/test/lib/process/ProcessTools.java:605: warning: [removal] AccessController in java.security has been deprecated and marked for removal
+            return AccessController.doPrivileged(
+                   ^
+/root/jdk17u-dev-jdk-17.0.8-7/test/lib/jdk/test/lib/NetworkConfiguration.java:466: warning: [removal] AccessController in java.security has been deprecated and marked for removal
+        AccessController.doPrivileged(pa);
+        ^
+Note: /root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1/TestLargePageUseForAuxMemory.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
 
 ACTION: main -- Passed. Execution successful
 REASON: User specified action: run main/othervm -Xbootclasspath/a:. -XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+WhiteBoxAPI -XX:+IgnoreUnrecognizedVMOptions -XX:+UseLargePages gc.g1.TestLargePageUseForAuxMemory 
-TIME:   38.397 seconds
+TIME:   37.819 seconds
 messages:
 command: main -Xbootclasspath/a:. -XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+WhiteBoxAPI -XX:+IgnoreUnrecognizedVMOptions -XX:+UseLargePages gc.g1.TestLargePageUseForAuxMemory
 reason: User specified action: run main/othervm -Xbootclasspath/a:. -XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+WhiteBoxAPI -XX:+IgnoreUnrecognizedVMOptions -XX:+UseLargePages gc.g1.TestLargePageUseForAuxMemory 
-started: Mon Mar 04 16:20:28 CST 2024
+started: Wed Mar 13 19:31:30 CST 2024
 Mode: othervm [/othervm specified]
 Additional options from @modules: --add-modules java.base --add-exports java.base/jdk.internal.misc=ALL-UNNAMED
-finished: Mon Mar 04 16:21:07 CST 2024
-elapsed time (seconds): 38.397
+finished: Wed Mar 13 19:32:08 CST 2024
+elapsed time (seconds): 37.819
 configuration:
 Boot Layer
   add modules: java.base                   
   add exports: java.base/jdk.internal.misc ALL-UNNAMED
 
 STDOUT:
-[0.075s][warning][pagesize] UseLargePages disabled, no large pages configured and available on the system.
-Warning: 'NoSuchMethodError' on register of sun.hotspot.WhiteBox::canWriteJavaHeapArchive()Z
-Warning: 'NoSuchMethodError' on register of sun.hotspot.WhiteBox::hostPhysicalMemory()J
-Warning: 'NoSuchMethodError' on register of sun.hotspot.WhiteBox::hostPhysicalSwap()J
-Warning: 'NoSuchMethodError' on register of sun.hotspot.WhiteBox::preTouchMemory(JJ)V
-Warning: 'NoSuchMethodError' on register of sun.hotspot.WhiteBox::cleanMetaspaces()V
+[0.051s][warning][pagesize] UseLargePages disabled, no large pages configured and available on the system.
 case1: card table and bitmap use large pages (barely) heapsize 1073741824 card table should use large pages true bitmaps should use large pages true
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1073741824 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:35.221406173Z] Gathering output for process 2306
-[2024-03-04T08:20:37.451320932Z] Waiting for completion for process 2306
-[2024-03-04T08:20:37.452770363Z] Waiting for completion finished for process 2306
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1073741824 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:37.511657768Z] Gathering output for process 2327
-[2024-03-04T08:20:40.117313094Z] Waiting for completion for process 2327
-[2024-03-04T08:20:40.118979715Z] Waiting for completion finished for process 2327
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1073741824 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:36.744446361Z] Gathering output for process 1206
+[2024-03-13T11:31:39.087354551Z] Waiting for completion for process 1206
+[2024-03-13T11:31:39.096539133Z] Waiting for completion finished for process 1206
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1073741824 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:39.158026487Z] Gathering output for process 1227
+[2024-03-13T11:31:41.520757555Z] Waiting for completion for process 1227
+[2024-03-13T11:31:41.524157586Z] Waiting for completion finished for process 1227
 case2: card table and bitmap use large pages (extra slack) heapsize 1075838976 card table should use large pages true bitmaps should use large pages true
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1075838976 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:40.180278605Z] Gathering output for process 2347
-[2024-03-04T08:20:42.865750943Z] Waiting for completion for process 2347
-[2024-03-04T08:20:42.866974285Z] Waiting for completion finished for process 2347
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1075838976 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:42.941810433Z] Gathering output for process 2367
-[2024-03-04T08:20:45.618944365Z] Waiting for completion for process 2367
-[2024-03-04T08:20:45.620191706Z] Waiting for completion finished for process 2367
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1075838976 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:41.589962078Z] Gathering output for process 1247
+[2024-03-13T11:31:44.156669683Z] Waiting for completion for process 1247
+[2024-03-13T11:31:44.158718301Z] Waiting for completion finished for process 1247
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1075838976 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:44.222991080Z] Gathering output for process 1267
+[2024-03-13T11:31:46.643103665Z] Waiting for completion for process 1267
+[2024-03-13T11:31:46.646953899Z] Waiting for completion finished for process 1267
 case3: only bitmap uses large pages (barely not) heapsize 1071644672 card table should use large pages false bitmaps should use large pages true
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1071644672 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:45.694391284Z] Gathering output for process 2387
-[2024-03-04T08:20:48.307166672Z] Waiting for completion for process 2387
-[2024-03-04T08:20:48.310422118Z] Waiting for completion finished for process 2387
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1071644672 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:48.387330567Z] Gathering output for process 2407
-[2024-03-04T08:20:50.881756072Z] Waiting for completion for process 2407
-[2024-03-04T08:20:50.883151706Z] Waiting for completion finished for process 2407
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1071644672 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:46.723329687Z] Gathering output for process 1287
+[2024-03-13T11:31:49.162798146Z] Waiting for completion for process 1287
+[2024-03-13T11:31:49.184519224Z] Waiting for completion finished for process 1287
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx1071644672 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:49.260938251Z] Gathering output for process 1307
+[2024-03-13T11:31:51.976809627Z] Waiting for completion for process 1307
+[2024-03-13T11:31:51.982655574Z] Waiting for completion finished for process 1307
 case4: only bitmap uses large pages (barely) heapsize 134217728 card table should use large pages false bitmaps should use large pages true
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx134217728 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:50.965680989Z] Gathering output for process 2427
-[2024-03-04T08:20:53.419099240Z] Waiting for completion for process 2427
-[2024-03-04T08:20:53.420373480Z] Waiting for completion finished for process 2427
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx134217728 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:53.472156222Z] Gathering output for process 2447
-[2024-03-04T08:20:56.390361913Z] Waiting for completion for process 2447
-[2024-03-04T08:20:56.397741562Z] Waiting for completion finished for process 2447
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx134217728 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:52.038937336Z] Gathering output for process 1327
+[2024-03-13T11:31:54.688757570Z] Waiting for completion for process 1327
+[2024-03-13T11:31:54.700195964Z] Waiting for completion finished for process 1327
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx134217728 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:54.759944254Z] Gathering output for process 1347
+[2024-03-13T11:31:57.262947784Z] Waiting for completion for process 1347
+[2024-03-13T11:31:57.266670815Z] Waiting for completion finished for process 1347
 case5: only bitmap uses large pages (extra slack) heapsize 136314880 card table should use large pages false bitmaps should use large pages true
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx136314880 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:56.512172131Z] Gathering output for process 2467
-[2024-03-04T08:20:59.182289797Z] Waiting for completion for process 2467
-[2024-03-04T08:20:59.183521338Z] Waiting for completion finished for process 2467
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx136314880 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:20:59.256483875Z] Gathering output for process 2487
-[2024-03-04T08:21:01.748155011Z] Waiting for completion for process 2487
-[2024-03-04T08:21:01.749989724Z] Waiting for completion finished for process 2487
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx136314880 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:57.331113143Z] Gathering output for process 1367
+[2024-03-13T11:31:59.858718275Z] Waiting for completion for process 1367
+[2024-03-13T11:31:59.860485289Z] Waiting for completion finished for process 1367
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx136314880 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:31:59.921015086Z] Gathering output for process 1387
+[2024-03-13T11:32:02.948572418Z] Waiting for completion for process 1387
+[2024-03-13T11:32:02.962704834Z] Waiting for completion finished for process 1387
 case6: nothing uses large pages (barely not) heapsize 132120576 card table should use large pages false bitmaps should use large pages false
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx132120576 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:21:01.815106233Z] Gathering output for process 2507
-[2024-03-04T08:21:04.430249909Z] Waiting for completion for process 2507
-[2024-03-04T08:21:04.432989878Z] Waiting for completion finished for process 2507
-Command line: [/root/jdk/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx132120576 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
-[2024-03-04T08:21:04.491518800Z] Gathering output for process 2527
-[2024-03-04T08:21:07.092143265Z] Waiting for completion for process 2527
-[2024-03-04T08:21:07.094321961Z] Waiting for completion finished for process 2527
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx132120576 -Xlog:pagesize,gc+init,gc+heap+coops=debug -XX:+UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:32:03.061501745Z] Gathering output for process 1407
+[2024-03-13T11:32:05.623769961Z] Waiting for completion for process 1407
+[2024-03-13T11:32:05.627111488Z] Waiting for completion finished for process 1407
+Command line: [/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java -cp /root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar -XX:+UseG1GC -XX:G1HeapRegionSize=1048576 -Xmx132120576 -Xlog:pagesize -XX:-UseLargePages -XX:+IgnoreUnrecognizedVMOptions -XX:ObjectAlignmentInBytes=8 -version ]
+[2024-03-13T11:32:05.741787029Z] Gathering output for process 1427
+[2024-03-13T11:32:08.343663070Z] Waiting for completion for process 1427
+[2024-03-13T11:32:08.344823479Z] Waiting for completion finished for process 1427
 STDERR:
 STATUS:Passed.
 rerun:
@@ -244,13 +367,13 @@ HOME=/root \
 LANG=C.UTF-8 \
 PATH=/bin:/usr/bin:/usr/sbin \
 CLASSPATH=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg/gc/g1:/root/JTwork/classes/test/lib:/root/jdk17u-dev-jdk-17.0.8-7/test/lib:/root/jtreg/lib/javatest.jar:/root/jtreg/lib/jtreg.jar \
-    /root/jdk/bin/java \
+    /usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64/bin/java \
         -Dtest.vm.opts= \
         -Dtest.tool.vm.opts= \
         -Dtest.compiler.opts= \
         -Dtest.java.opts= \
-        -Dtest.jdk=/root/jdk \
-        -Dcompile.jdk=/root/jdk \
+        -Dtest.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
+        -Dcompile.jdk=/usr/lib/jvm/java-17-openjdk-17.0.8.7-2.oe2309.riscv64 \
         -Dtest.timeout.factor=1.0 \
         -Dtest.root=/root/jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg \
         -Dtest.name=gc/g1/TestLargePageUseForAuxMemory.java \
@@ -268,7 +391,7 @@ CLASSPATH=/root/JTwork/classes/gc/g1/TestLargePageUseForAuxMemory.d:/root/jdk17u
         -XX:+WhiteBoxAPI \
         -XX:+IgnoreUnrecognizedVMOptions \
         -XX:+UseLargePages \
-        com.sun.javatest.regtest.agent.MainWrapper /root/JTwork/gc/g1/TestLargePageUseForAuxMemory.d/main.1.jta
+        com.sun.javatest.regtest.agent.MainWrapper /root/JTwork/gc/g1/TestLargePageUseForAuxMemory.d/main.4.jta
 
 TEST RESULT: Passed. Execution successful
 --------------------------------------------------
@@ -279,10 +402,10 @@ Results written to /root/JTwork
 
 JTreport 和 JTwork文件夹将在用例执行完成后生成，执行日志将存放在JTwork目录下的.jtr文件中，统计结果将存放在JTreport目录下的.html文件中
 
-如果要执行一个测试套
+如果要执行一个测试套jdk17u-dev-jdk-17.0.8-7
 
 ````
-$ /root/jtreg/bin/jtreg -jdk:/root/jdk -va /root/jdk17u-dev-jdk-17.0.8-7/test/langtools:tier1
+$ jtreg -va /root/jdk17u-dev-jdk-17.0.8-7/test/langtools:tier1
 ````
 
 jdk的测试分了4个层次：
@@ -298,10 +421,14 @@ tier4：该测试组包括之前各层未涵盖的所有其他测试。 例如�
 执行多个测试套
 
 ````
-$ /root/jtreg/bin/jtreg -jdk:/root/jdk -va jdk17u-dev-jdk-17.0.8-7/test/jdk:tier1 jdk17u-dev-jdk-17.0.8-7/test/jaxp:tier1 jdk17u-dev-jdk-17.0.8-7/test/lib-test:tier1
+$ jtreg -va jdk17u-dev-jdk-17.0.8-7/test/jdk:tier1 jdk17u-dev-jdk-17.0.8-7/test/jaxp:tier1 jdk17u-dev-jdk-17.0.8-7/test/lib-test:tier1
 ````
 
+在 openEuler RISC-V 中执行整个测试套：
 
+````
+$ jtreg -va -ignore:quiet -jit -conc:auto -timeout:5 -tl:3590 jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg:tier1 jdk17u-dev-jdk-17.0.8-7/test/langtools:tier1 jdk17u-dev-jdk-17.0.8-7/test/jdk:tier1 jdk17u-dev-jdk-17.0.8-7/test/jaxp:tier1 jdk17u-dev-jdk-17.0.8-7/test/lib-test:tier1 >log 2>&1 &
+````
 
 
 
