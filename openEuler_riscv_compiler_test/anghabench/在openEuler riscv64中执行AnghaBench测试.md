@@ -24,7 +24,7 @@ $ yum install -y gcc
 #### 2.2 执行测试
 执行测试就是将 AnghaBench 源码目录及其子目录下的 .c 文件 用 gcc 编译，将该步骤写成 shell 脚本，测试时直接执行该 shell 脚本即可
 
-脚本存放在 [anghabench_run.sh](../anghabench_run.sh)
+脚本存放在 [anghabench_run.sh](../../anghabench/anghabench_run.sh)
 
 ````
 $ cd AnghaBench
