@@ -25,62 +25,54 @@ $ yum install -y scap-security-guide
 选择合适的 SCAP 文件
 
 ````
-$ ls /usr/share/xml/scap/ssg/content | grep xccdf
-ssg-alinux2-xccdf.xml
-ssg-alinux3-xccdf.xml
-ssg-anolis8-xccdf.xml
-ssg-centos7-xccdf.xml
-ssg-centos8-xccdf.xml
-ssg-chromium-xccdf.xml
-ssg-cs9-xccdf.xml
-ssg-debian10-xccdf.xml
-ssg-debian11-xccdf.xml
-ssg-eks-xccdf.xml
-ssg-fedora-xccdf.xml
-ssg-firefox-xccdf.xml
-ssg-macos1015-xccdf.xml
-ssg-ocp4-xccdf.xml
-ssg-ol7-xccdf.xml
-ssg-ol8-xccdf.xml
-ssg-ol9-xccdf.xml
+$ ls /usr/share/xml/scap/ssg/content | grep openeuler
+ssg-openeuler2203-cpe-dictionary.xml
+ssg-openeuler2203-cpe-oval.xml
+ssg-openeuler2203-ds-1.2.xml
+ssg-openeuler2203-ds.xml
+ssg-openeuler2203-ocil.xml
+ssg-openeuler2203-oval.xml
 ssg-openeuler2203-xccdf.xml
+ssg-openeuler-cpe-dictionary.xml
+ssg-openeuler-cpe-oval.xml
+ssg-openeuler-ds-1.2.xml
+ssg-openeuler-ds.xml
+ssg-openeuler-ocil.xml
+ssg-openeuler-oval.xml
 ssg-openeuler-xccdf.xml
-ssg-opensuse-xccdf.xml
-ssg-rhcos4-xccdf.xml
-ssg-rhel7-xccdf.xml
-ssg-rhel8-xccdf.xml
-ssg-rhel9-xccdf.xml
-ssg-rhv4-xccdf.xml
-ssg-sl7-xccdf.xml
-ssg-sle12-xccdf.xml
-ssg-sle15-xccdf.xml
-ssg-ubuntu1604-xccdf.xml
-ssg-ubuntu1804-xccdf.xml
-ssg-ubuntu2004-xccdf.xml
-ssg-ubuntu2204-xccdf.xml
-ssg-uos20-xccdf.xml
 ````
 
-根据列出的内容，当前系统为 openEuler，所以选择 ssg-openeuler-xccdf.xml
+根据列出的内容，当前系统为 openEuler，所以选择 ssg-openeuler2203-ds.xml
 
 查看所选择的 SCAP 文件内容
 
 ````
-$ oscap info /usr/share/xml/scap/ssg/content/ssg-openeuler-xccdf.xml
-Document type: XCCDF Checklist
-Checklist version: 1.2
+$ oscap info /usr/share/xml/scap/ssg/content/ssg-openeuler2203-ds.xml
+Document type: Source Data Stream
 Imported: 2023-09-08T08:00:00
-Status: draft
-Generated: 2023-10-07
-Resolved: true
-Profiles:
-        Title: Standard System Security Profile for openEuler
-                Id: xccdf_org.ssgproject.content_profile_standard
-Referenced check files:
-        ssg-openeuler-oval.xml
-                system: http://oval.mitre.org/XMLSchema/oval-definitions-5
-        ssg-openeuler-ocil.xml
-                system: http://scap.nist.gov/schema/ocil/2
+
+Stream: scap_org.open-scap_datastream_from_xccdf_ssg-openeuler2203-xccdf.xml
+Generated: (null)
+Version: 1.3
+Checklists:
+        Ref-Id: scap_org.open-scap_cref_ssg-openeuler2203-xccdf.xml
+                Status: draft
+                Generated: 2023-10-07
+                Resolved: true
+                Profiles:
+                        Title: Standard System Security Profile for openEuler 22.03 LTS
+                                Id: xccdf_org.ssgproject.content_profile_standard
+                Referenced check files:
+                        ssg-openeuler2203-oval.xml
+                                system: http://oval.mitre.org/XMLSchema/oval-definitions-5
+                        ssg-openeuler2203-ocil.xml
+                                system: http://scap.nist.gov/schema/ocil/2
+Checks:
+        Ref-Id: scap_org.open-scap_cref_ssg-openeuler2203-oval.xml
+        Ref-Id: scap_org.open-scap_cref_ssg-openeuler2203-ocil.xml
+        Ref-Id: scap_org.open-scap_cref_ssg-openeuler2203-cpe-oval.xml
+Dictionaries:
+        Ref-Id: scap_org.open-scap_cref_ssg-openeuler2203-cpe-dictionary.xml
 ````
 
 里面有一个 XCCDF 基准，Id为 xccdf_org.ssgproject.content_profile_standard，这个 Id 在执行合规检查时会用到
@@ -96,7 +88,7 @@ Profiles：可用的配置文件
 选择合适的 XCCDF 基准，执行 SCAP 合规检查，并生成报告
 
 ````
-$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard --results-arf arf.xml --report report.html /usr/share/xml/scap/ssg/content/ssg-openeuler-xccdf.xml
+$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard --results scan_results.xml --report scan_report.html /usr/share/xml/scap/ssg/content/ssg-openeuler-ds.xml
 ````
 
 --profile：指定 XCCDF 配置文件的(基线标准)Id
@@ -110,7 +102,7 @@ $ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard --res
 执行 SCAP 漏洞评估
 
 ````
-$ oscap oval eval --results oval_result.xml --report oval_report.html /usr/share/xml/scap/ssg/content/ssg-openeuler-oval.xml
+$ oscap oval eval --results oval_result.xml --report oval_report.html /usr/share/xml/scap/ssg/content/ssg-openeuler-ds.xml
 ````
 
 
