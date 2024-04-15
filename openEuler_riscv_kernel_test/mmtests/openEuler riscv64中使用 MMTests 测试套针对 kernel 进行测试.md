@@ -134,7 +134,7 @@ do
 done
 ````
 
-测试结束后，测试结果存放在 当前目录的 work/log 下
+测试结束后，测试结果存放在当前目录的 work/log 下
 
 ````
 $ ls work/log/config-buildtest-hpc-blas/iter-0/ -l
