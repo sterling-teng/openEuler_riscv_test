@@ -8,7 +8,7 @@ OpenSCAP 是一个获得`SCAP`认证的、免费开源的工具，目前由Redha
 
 #### 2. OpenSCAP使用
 
-使用环境：openEuler RISC-V 23.09 镜像
+使用环境：openEuler RISC-V 24.03 镜像
 
 安装 openscap 工具
 
@@ -47,7 +47,7 @@ ssg-openeuler-xccdf.xml
 查看所选择的 SCAP 文件内容
 
 ````
-$ oscap info /usr/share/xml/scap/ssg/content/ssg-openeuler2203-ds.xml
+$ oscap info /usr/share/xml/scap/ssg/content/ssg-openeuler2403-ds.xml
 Document type: Source Data Stream
 Imported: 2023-09-08T08:00:00
 
@@ -88,7 +88,7 @@ Profiles：可用的配置文件
 选择合适的 XCCDF 基准，执行 SCAP 合规检查，并生成报告
 
 ````
-$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard --results scan_results.xml --report scan_report.html /usr/share/xml/scap/ssg/content/ssg-openeuler-ds.xml
+$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard --results scan_results.xml --report scan_report.html /usr/share/xml/scap/ssg/content/ssg-openeuler2403-ds.xml
 ````
 
 --profile：指定 XCCDF 配置文件的(基线标准)Id
@@ -99,12 +99,6 @@ $ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard --res
 
 检查完成后，会在命令执行路径(如果不指定就在当前目录下)生成测试结果和测试报告
 
-执行 SCAP 漏洞评估
-
-````
-$ oscap oval eval --results oval_result.xml --report oval_report.html /usr/share/xml/scap/ssg/content/ssg-openeuler-ds.xml
-````
-
 
 
 参考：
@@ -114,3 +108,5 @@ https://zhuanlan.zhihu.com/p/138233344
 https://blog.csdn.net/KeyarchOS/article/details/132247999
 
 [OpenSCAP 官网](https://static.open-scap.org/openscap-1.3/oscap_user_manual.html#_installing_openscap)
+
+https://gitee.com/openeuler/security-committee/tree/master/secure-configuration-benchmark
