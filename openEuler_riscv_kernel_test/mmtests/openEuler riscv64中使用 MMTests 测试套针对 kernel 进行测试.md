@@ -15,7 +15,7 @@ MMTests是一个可配置的测试套件，允许开发者进行常规测试。�
 安装依赖包
 
 ````
-$ yum install git expect tar make pcre-devel bzip2-devel xz-devel libcurl-devel libcurl texinfo gcc-gfortran java-1.8.0-openjdk-devel gnuplot wget libXt-devel readline-devel glibc-headers gcc-c++ zlib zlib-devel
+$ yum install -y git expect tar make pcre-devel bzip2-devel xz-devel libcurl-devel libcurl texinfo gcc-gfortran java-1.8.0-openjdk-devel gnuplot wget libXt-devel readline-devel glibc-headers gcc-c++ zlib zlib-devel
 ````
 
 下载并编译安装R包
