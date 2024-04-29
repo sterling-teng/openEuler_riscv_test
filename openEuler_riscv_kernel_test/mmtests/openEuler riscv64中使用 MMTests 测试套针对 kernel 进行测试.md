@@ -24,7 +24,7 @@ $ yum install -y git expect tar make pcre-devel bzip2-devel xz-devel libcurl-dev
 $ wget https://mirror.lzu.edu.cn/CRAN/src/base/R-3/R-3.6.3.tar.gz
 $ R_dir=$(pwd)/R-3.6.3.tar.gz
 $ mkdir -p /usr/local/R
-$ cp $R_dir /opt/ && cd /opt/
+$ cp -r $R_dir /opt/ && cd /opt/
 $ tar -zxf R-3.6.3.tar.gz
 $ cd R-3.6.3
 $ ./configure --enable-R-shlib=yes --with-tcltk --prefix=/usr/local/R
