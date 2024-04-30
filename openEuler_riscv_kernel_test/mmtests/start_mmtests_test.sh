@@ -1,11 +1,11 @@
 #/usr/bin/bash
 prepare_env(){
-    dnf install -y git expect tar make pcre-devel bzip2-devel xz-devel libcurl-devel  libcurl texinfo gcc-gfortran java-1.8.0-openjdk-devel gnuplot wget libXt-devel readline-devel glibc-headers
-    until (test -e "R-3.6.3.tar.gz")
+    dnf install -y git expect tar make pcre-devel bzip2-devel xz-devel libcurl-devel  libcurl texinfo gcc-gfortran java-1.8.0-openjdk-devel gnuplot wget libXt-devel readline-devel glibc-headers gcc-c++ zlib zlib-devel
+    until (test -e "R-4.4.0.tar.gz")
     do
-        wget https://mirror.lzu.edu.cn/CRAN/src/base/R-3/R-3.6.3.tar.gz
+        wget https://mirror.lzu.edu.cn/CRAN/src/base/R-4/R-4.4.0.tar.gz
     done
-    R_dir=$(pwd)/R-3.6.3.tar.gz
+    R_dir=$(pwd)/R-4.4.0.tar.gz
     until (test -e "List-BinarySearch")
     do
         git clone https://github.com/daoswald/List-BinarySearch.git
@@ -30,10 +30,10 @@ prepare_env(){
     #install R
     mkdir -p /usr/local/R
     cp $R_dir /opt/ && cd /opt/
-    ##wget https://mirror.lzu.edu.cn/CRAN/src/base/R-3/R-3.6.3.tar.gz
-    [ -d R-3.6.3 ] && rm -rf R-3.6.3
-    tar -zxf R-3.6.3.tar.gz
-    cd R-3.6.3
+    ##wget https://mirror.lzu.edu.cn/CRAN/src/base/R-4/R-4.4.0.tar.gz
+    [ -d R-4.4.0 ] && rm -rf R-4.4.0
+    tar -zxf R-4.4.0.tar.gz
+    cd R-4.4.0
     ./configure --enable-R-shlib=yes --with-tcltk --prefix=/usr/local/R
     make
     make install
