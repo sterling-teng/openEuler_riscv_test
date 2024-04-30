@@ -75,7 +75,6 @@ $ ./ltpstress.sh -n -m 512 -t 168
 ````
 $ mkdir -p /opt/ltp/output
 $ ./ltpstress.sh -i 3600 -d /opt/ltp/output/ltpstress.data -I /opt/ltp/output/ltpstress.iodata -l /opt/ltp/output/ltpstress.log -n -p -S -m 512 -t 168
-$ ./ltpstress.sh -i 10 -d /opt/ltp/output/ltpstress.data -I /opt/ltp/output/ltpstress.iodata -l /opt/ltp/output/ltpstress.log -n -p -S -m 512 -t 1
 ````
 
 参数:
