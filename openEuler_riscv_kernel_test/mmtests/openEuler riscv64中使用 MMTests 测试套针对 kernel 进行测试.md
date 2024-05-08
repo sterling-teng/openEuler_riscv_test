@@ -120,7 +120,7 @@ REPORTING BUGS
 使用 run-mmtests.sh 执行测试
 
 ````
-$ ./run-mmtests.sh --no-monitor --config configs/config-buildtest-hpc-boost
+$ ./run-mmtests.sh --no-monitor --config configs/config-buildtest-hpc-boost config-buildtest-hpc-boost
 ````
 
 可以将所要进行的测试的配置文件写在一个文件里，然后读取这个文件执行测试，例如写在cnf.txt文件里
