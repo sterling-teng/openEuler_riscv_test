@@ -21,7 +21,7 @@ $ git clone https://github.com/lac-dcc/jotai-benchmarks.git
 安装测试所需软件包
 
 ````
-$ yum install -y gcc
+$ yum install -y gcc gcc-*
 ````
 
 测试程序源码存放于两个文件夹中
