@@ -228,7 +228,7 @@ Selection (<number>|all|none|quit|run):
 acpi                                    FAIL
 clock                                   FAIL
 cpufreq                                 FAIL
-disk                                    FAIL
+disk                                    PASS
 dpdk-enP2p197s0                         FAIL
 dpdk-enP2p201s0                         FAIL
 dpdk-enP1p129s0f0                       FAIL
@@ -239,16 +239,20 @@ ethernet-enP1p129s0f0                   FAIL
 ethernet-enP1p129s0f1                   FAIL
 kabi                                    PASS
 kabiwhitelist                           PASS
+kdump                                   FAIL
+memory                                  PASS
 nvme-nvme0n1                            FAIL
 perf                                    PASS
 spdk-nvme0n1                            FAIL
 system                                  FAIL
-usb                                     FAIL
+usb                                     PASS
+watchdog                                PASS
 Log saved to file: /usr/share/oech/logs/oech-20240507212701-D2mkLwP9At.tar succeed.
 Do you want to submit last result? (y|n) y
 Start to upload result to server 192.168.0.103, please wait.
 Upload result to server 192.168.0.103 succeed.
 ````
+测试 watchdog 时会自动重启设备，重启后再次执行oech,会提示是否上传log,选择y，在server端可以看到 watchdog 的测试结果
 
 测试完成后，会提示是否将测试结果上传到 server，选择y 即可上传
 
