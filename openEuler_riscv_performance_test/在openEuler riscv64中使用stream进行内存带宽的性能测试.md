@@ -99,7 +99,7 @@ $ cat /proc/cpuinfo |grep 'physical id'|sort -u|wc -l   //查询CPU路数
 ````
 
 ````
-$ root@9a3ad9248030:/home/stream# cat /sys/devices/system/cpu/cpu0/cache/index3/size
+$ root@9a3ad9248030:/home/stream# cat /sys/devices/system/cpu/cpu0/cache/index3/size   //查询最高缓存
 49152K
 ````
 
