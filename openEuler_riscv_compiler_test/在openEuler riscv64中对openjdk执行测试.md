@@ -429,7 +429,9 @@ $ jtreg -va jdk17u-dev-jdk-17.0.8-7/test/jdk:tier1 jdk17u-dev-jdk-17.0.8-7/test/
 ````
 $ jtreg -va -ignore:quiet -jit -conc:auto -timeout:5 -tl:3590 jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg:tier1 jdk17u-dev-jdk-17.0.8-7/test/langtools:tier1 jdk17u-dev-jdk-17.0.8-7/test/jdk:tier1 jdk17u-dev-jdk-17.0.8-7/test/jaxp:tier1 jdk17u-dev-jdk-17.0.8-7/test/lib-test:tier1 >log 2>&1 &
 ````
-
+测试套的结果统计在JTreport/html/report.html中
+测试用例的日志存放在JTwork中，用例XXX/YYY/ZZZ.java的执行日志存在在JTwork/XXX/YYY/ZZZ.jtr文件中
+jtr文件中test result有三种状态：Passed、Failed、Error，分别对应用例执行通过，执行失败和执行出错
 
 
 参考：
