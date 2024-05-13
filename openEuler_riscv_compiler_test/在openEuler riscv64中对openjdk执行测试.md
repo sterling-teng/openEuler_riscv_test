@@ -6,9 +6,11 @@ jtreg 全称 Java Test Registry，是 openjdk 测试框架使用的测试工具�
 
 #### 2. Jtreg 使用方法
 
-##### 2.1 安装
-
 测试环境：使用 [openEuler riscv64 23.09](https://repo.tarsier-infra.com/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/QEMU/) 镜像的 QEMU
+
+##### 2.1 测试openjdk17
+
+###### 2.1 .1安装
 
 安装 openjdk17
 
@@ -53,7 +55,8 @@ $ export PATH=$JT_HOME/bin:$PATH
 ````
 $ yum install -y git subversion screen samba samba-client gcc gdb cmake automake lrzsz expect libX11* libxt* libXtst* libXt* libXrender* cache* cups* unzip* zip* freetype* mercurial numactl vim tar dejavu-fonts unix2dos dos2unix bc lsof net-tools
 ````
-##### 2.2 执行测试
+###### 2.1.2 执行测试
+
 执行一个测试用例
 
 ````
@@ -427,11 +430,119 @@ $ jtreg -va jdk17u-dev-jdk-17.0.8-7/test/jdk:tier1 jdk17u-dev-jdk-17.0.8-7/test/
 在 openEuler RISC-V 中执行整个测试套：
 
 ````
-$ jtreg -va -ignore:quiet -jit -conc:auto -timeout:5 -tl:3590 jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg:tier1 jdk17u-dev-jdk-17.0.8-7/test/langtools:tier1 jdk17u-dev-jdk-17.0.8-7/test/jdk:tier1 jdk17u-dev-jdk-17.0.8-7/test/jaxp:tier1 jdk17u-dev-jdk-17.0.8-7/test/lib-test:tier1 >log 2>&1 &
+$ jtreg -va -ignore:quiet -jit -conc:auto -timeout:5 -tl:3590 jdk17u-dev-jdk-17.0.8-7/test/hotspot/jtreg:tier1 jdk17u-dev-jdk-17.0.8-7/test/langtools:tier1 jdk17u-dev-jdk-17.0.8-7/test/jdk:tier1 jdk17u-dev-jdk-17.0.8-7/test/jaxp:tier1 jdk17u-dev-jdk-17.0.8-7/test/lib-test:tier1 >jdk17_log 2>&1
 ````
-测试套的结果统计在JTreport/html/report.html中
-测试用例的日志存放在JTwork中，用例XXX/YYY/ZZZ.java的执行日志存在在JTwork/XXX/YYY/ZZZ.jtr文件中
-jtr文件中test result有三种状态：Passed、Failed、Error，分别对应用例执行通过，执行失败和执行出错
+
+##### 2.2 openjdk8
+
+###### 2.2.1 安装
+
+安装openjdk8
+
+````
+$ yum install -y java-1.8.0-openjdk*
+$ java -version
+openjdk version "1.8.0_402"
+OpenJDK Runtime Environment Bisheng (build 1.8.0_402-b06)
+OpenJDK 64-Bit Zero VM Bisheng (build 25.402-b06, interpreted mode)
+````
+
+下载对应版本的openjdk源码 https://github.com/openjdk/jdk8u-dev/archive/refs/tags/jdk8u402-b06.zip ， 并解压
+
+````
+$ wget https://github.com/openjdk/jdk8u-dev/archive/refs/tags/jdk8u402-b06.zip
+$ unzip jdk8u402-b06.zip
+$ ls jdk8u-dev-jdk8u402-b06/test
+jtreg-ext  lib  Makefile  projects
+````
+
+测试用例在源码根目录下的 test 目录下
+
+由于 jtreg 是跨平台的，所以可以直接下载编译好的对应版本的 [jtreg](https://builds.shipilev.net/jtreg/jtreg4.2-b16.zip)，并解压
+
+````
+$ wget https://builds.shipilev.net/jtreg/jtreg4.2-b16.zip
+$ unzip jtreg4.2-b16.zip
+````
+
+设置环境变量
+
+````
+$ export JAVA_HOME=$(ls -lr $(ls -lr /usr/bin/java | awk '{print $NF}') |awk '{print $NF}' | awk -F/ '{print $1"/"$2"/"$3"/"$4"/"$5}')     //path/to/JDK
+$ export PATH=$JAVA_HOME/bin:$PATH
+$ export JT_HOME=$(pwd)/jtreg      //path/to/jtreg
+$ export PATH=$JT_HOME/bin:$PATH
+````
+
+安装测试所需软件包
+
+````
+$ yum install -y git subversion screen samba samba-client gcc gdb cmake automake lrzsz expect libX11* libxt* libXtst* libXt* libXrender* cache* cups* unzip* zip* freetype* mercurial numactl vim tar dejavu-fonts unix2dos dos2unix bc lsof net-tools
+````
+
+执行整个测试套
+
+````
+jtreg -va -ignore:quiet -jit -conc:auto -timeout:5 -tl:3590 jdk8u-dev-jdk8u402-b06/hotspot/test:hotspot_tier1 jdk8u-dev-jdk8u402-b06/langtools/test:langtools_tier1 jdk8u-dev-jdk8u402-b06/jdk/test:jdk_tier1 >jdk8_log 2>&1
+````
+
+##### 2.3 openjdk11
+
+###### 2.3.1 安装
+
+安装openjdk11
+
+````
+$ yum install -y java-11-openjdk*
+$ java -version
+openjdk version "11.0.22" 2024-01-16
+OpenJDK Runtime Environment Bisheng (build 11.0.22+7)
+OpenJDK 64-Bit Server VM Bisheng (build 11.0.22+7, mixed mode, sharing)
+````
+
+下载对应版本的openjdk源码 https://github.com/openjdk/jdk11u-dev/archive/refs/tags/jdk-11.0.22+7.zip ， 并解压
+
+````
+$ wget https://github.com/openjdk/jdk11u-dev/archive/refs/tags/jdk-11.0.22+7.zip
+$ unzip jdk-11.0.22+7.zip
+$ ls jdk11u-dev-jdk-11.0.22-7/test
+failure_handler  jaxp       langtools  make      nashorn
+fmw              jdk        lib        Makefile  TestCommon.gmk
+hotspot          jtreg-ext  lib-test   micro
+````
+
+测试用例在源码根目录下的 test 目录下
+
+由于 jtreg 是跨平台的，所以可以直接下载编译好的对应版本的 [jtreg](https://builds.shipilev.net/jtreg/jtreg-7.3.1%2B1.zip)，并解压
+
+````
+$ wget https://builds.shipilev.net/jtreg/jtreg-7.3.1%2B1.zip
+$ unzip jtreg-7.3.1+1.zip
+````
+
+设置环境变量
+
+````
+$ export JAVA_HOME=$(ls -lr $(ls -lr /usr/bin/java | awk '{print $NF}') |awk '{print $NF}' | awk -F/ '{print $1"/"$2"/"$3"/"$4"/"$5}')     //path/to/JDK
+$ export PATH=$JAVA_HOME/bin:$PATH
+$ export JT_HOME=$(pwd)/jtreg      //path/to/jtreg
+$ export PATH=$JT_HOME/bin:$PATH
+````
+
+安装测试所需软件包
+
+````
+$ yum install -y git subversion screen samba samba-client gcc gdb cmake automake lrzsz expect libX11* libxt* libXtst* libXt* libXrender* cache* cups* unzip* zip* freetype* mercurial numactl vim tar dejavu-fonts unix2dos dos2unix bc lsof net-tools
+````
+
+执行整个测试套
+
+````
+$ jtreg -va -ignore:quiet -jit -conc:auto -timeout:5 -tl:3590 jdk11u-dev-jdk-11.0.22-7/test/langtools:tier1 jdk11u-dev-jdk-11.0.22-7/test/hotspot/jtreg:tier1 jdk11u-dev-jdk-11.0.22-7/test/jdk:tier1 jdk11u-dev-jdk-11.0.22-7/test/jaxp:tier1 >jdk11_log 2>&1
+````
+
+测试套的结果统计在JTreport/html/report.html中 测试用例的日志存放在JTwork中，用例XXX/YYY/ZZZ.java的执行日志存在在JTwork/XXX/YYY/ZZZ.jtr文件中 jtr文件中test result有三种状态：Passed、Failed、Error，分别对应用例执行通过，执行失败和执行出错
+
 
 
 参考：
