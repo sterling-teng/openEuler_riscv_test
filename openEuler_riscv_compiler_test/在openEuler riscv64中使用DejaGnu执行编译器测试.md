@@ -39,6 +39,7 @@ $ git clone git://git.sv.gnu.org/dejagnu.git
 编译并安装
 
 ````
+$ yum install texinfo
 $ mkdir install_runtest
 $ cd dejagnu
 $ ./configure --prefix=/root/install_runtest    //配置
