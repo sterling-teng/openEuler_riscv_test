@@ -260,7 +260,7 @@ $ yum install -y libtirpc-devel gcc make
 $ make results
 ````
 
-clang 编译并执行测试?
+clang 编译并执行测试
 
 ````
 $ yum install -y libtirpc-devel clang make
@@ -769,7 +769,7 @@ $ make -j $(nproc)
 $ make install
 ````
 
-clang编译安装?
+clang编译安装
 
 ````
 $ cd ltp
