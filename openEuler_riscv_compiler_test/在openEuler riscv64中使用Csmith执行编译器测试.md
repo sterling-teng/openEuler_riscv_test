@@ -67,7 +67,7 @@ checksum = A8646915
 ````
 $ csmith > random2.c
 $ gcc random2.c -I/root/csmith/install/include -o random2_gcc
-$ clang random2.c -I$/root/csmith/install/include -o random2_clang
+$ clang random2.c -I/root/csmith/install/include -o random2_clang
 $ ./random2_gcc > gcc_output.txt
 $ ./random2_clang > clang_output.txt
 ````
