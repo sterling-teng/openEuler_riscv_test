@@ -16,6 +16,7 @@ yarpgen 是一个随机程序生成器，它生成正确的可运行的C/C++和D
 
 ````
 $ git clone https://github.com/intel/yarpgen.git
+$ cd yarpgen
 ````
 
 安装测试所需软件包
