@@ -81,7 +81,7 @@ $ cat clang_output.txt
 checksum = DBD79567
 ````
 
-测试时可以使用自动化脚本 [csmith_run.sh](../csmith_run.sh) 批量生成测试用例来验证编译器，例如生成1000个测试用例进行测试
+测试时可以使用自动化脚本 [csmith_run.sh](./csmith_run.sh) 批量生成测试用例来验证编译器，例如生成1000个测试用例进行测试
 
 ````
 $ bash csmith_run.sh 1000
