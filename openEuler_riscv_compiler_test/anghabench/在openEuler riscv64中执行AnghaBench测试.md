@@ -30,7 +30,7 @@ $ yum install -y gcc
 
 ````
 $ cd AnghaBench
-$ wget https://gitee.com/jean9823/openEuler_riscv_test/raw/master/openEuler_riscv_compiler_test/AnghaBench/anghabench_run.sh
+$ wget https://gitee.com/jean9823/openEuler_riscv_test/raw/master/openEuler_riscv_compiler_test/anghabench/anghabench_run.sh
 $ mkdir log
 $ bash ./anghabench_run.sh | tee ../result.log
 ````
