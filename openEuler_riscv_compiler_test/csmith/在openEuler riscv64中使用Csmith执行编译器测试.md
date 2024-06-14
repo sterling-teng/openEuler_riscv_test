@@ -84,7 +84,7 @@ checksum = DBD79567
 测试时可以使用自动化脚本 [csmith_run.sh](./csmith_run.sh) 批量生成测试用例来验证编译器，例如生成1000个测试用例进行测试
 
 ````
-$ bash csmith_run.sh 1000
+$ bash csmith_run.sh 1000 | tee ./csmith.log
 ````
 
 Csmith还提供了许多选项来自定义生成的测试程序是否包含C语言的指定特征，方便对编译器的某些方面进行针对性的验证。使用csmith -h和csmith -hh命令可以查看各个选项的定义
