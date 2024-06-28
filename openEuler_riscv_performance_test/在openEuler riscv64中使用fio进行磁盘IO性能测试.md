@@ -59,6 +59,12 @@ $ fio -name=read -direct=1 -iodepth=32 -rw=read -ioengine=libaio -bs=4k -size=1G
 $ fio -name=write -direct=1 -iodepth=32 -rw=write -ioengine=libaio -bs=4k -size=1G -numjobs=1 -runtime=600 -group_reporting -filename=/dev/sda
 ````
 
+随机写和读测试，在混合读写的模式下，读占70%，写占30%
+
+````
+$ fio -name=write -direct=1 -iodepth=32 -rw=randrw -rwmixread=70 -ioengine=libaio -bs=4k -size=1G -numjobs=1 -runtime=600 -group_reporting -filename=/dev/sda
+````
+
 参数说明：
 
 -name: 表示测试任务名称，可以自定义
@@ -67,7 +73,7 @@ $ fio -name=write -direct=1 -iodepth=32 -rw=write -ioengine=libaio -bs=4k -size=
 
 -iodepth: I/O队列深度，例如-iodepth=32表示fio控制请求中的I/O最大个数为32，这里的队列深度是指每个线程的队列深度。
 
--rw: 读写策略，可以设置为randwrite(随机写)、randread(随机读)、write(顺序写)、read(顺序读)
+-rw: 读写策略，可以设置为randwrite(随机写)、randread(随机读)、write(顺序写)、read(顺序读)，randrw(随机混合读写)
 
 -ioengine: I/O引擎，支持多种类型，通常使用异步I/O引擎libaio
 
@@ -82,6 +88,8 @@ $ fio -name=write -direct=1 -iodepth=32 -rw=write -ioengine=libaio -bs=4k -size=
 group_reporting: 测试结果显示模式，如果指定该参数，测试结果会汇总每个线程的统计信息
 
 filename: 测试对象，可以是设备名称或者文件地址，例如 /dev/sda或者/root/test/openEuler-22.03-V2-base-d1-preview.img
+
+-rwmixread：在混合读写的模式下，读所占百分比，预设值是50
 
 ##### 2.3 测试结果分析
 

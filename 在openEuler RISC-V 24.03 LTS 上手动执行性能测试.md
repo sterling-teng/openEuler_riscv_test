@@ -870,3 +870,469 @@ $ grep FAIL ltpstress.log | sort | uniq >failcase.txt
 ````
 
 这样得到的 failcase.txt 为所有 FAIL 的 testcases 名字
+
+#### 6. iozone
+
+从 [iozone 官网](https://gitee.com/link?target=https%3A%2F%2Fwww.iozone.org%2F)下载源码
+
+````
+$ wget https://www.iozone.org/src/current/iozone3_506.tar
+$ tar -xvf iozone3_506.tar
+$ cd iozone3_506/src/current
+````
+
+gcc 编译并安装
+
+````
+$ make clean && make CFLAGS=-fcommon linux
+````
+
+clang编译并安装
+
+````
+$ make clean && make CC=clang CFLAGS=-fcommon linux
+````
+
+执行测试
+
+````
+$ ./iozone -Rab iozone-output.xls
+````
+
+-a：执行全面测试
+
+-R：产生execl格式的输出日志
+
+-b：指定输出到指定文件上
+
+#### 7. libmicro
+
+下载 libmicro 源码，并解压
+
+````
+$ wget https://github.com/redhat-performance/libMicro/archive/refs/heads/0.4.0-rh.zip   //下载0.4.0-rh分支
+$ unzip 0.4.0-rh.zip
+$ cd libMicro-0.4.0-rh
+````
+
+gcc 编译
+
+````
+$ make
+````
+
+clang 编译
+
+````
+$ make CC=clang CFLAGS="-Wno-error=implicit-function-declaration"
+````
+
+执行测试
+
+````
+$ ./bench | tee output.log
+````
+
+或者
+
+````
+$ sh bench.sh | tee output.log
+````
+
+#### 8. fio
+
+安装 fio
+
+````
+$ yum install -y fio
+````
+
+下载 LLVM 平行宇宙项目 preview 版本 iso 镜像作为测试文件
+
+````
+$ wget https://repo.openeuler.org/openEuler-preview/openEuler-24.03-LLVM-Preview/ISO/riscv64/openEuler-24.03-LLVM-riscv64-dvd.iso
+````
+
+创建 fio-test.sh 测试脚本
+
+````
+#!/bin/bash
+
+filename=openEuler-24.03-LLVM-riscv64-dvd.iso
+numjobs=10
+iodepth=10
+for rw in read write randread randwrite randrw;do
+    for bs in 4 16 32 64 128 256 512 1024;do
+        if [ ${rw} == "randrw" ];then
+            fio -filename=${filename} -direct=1 -iodepth ${iodepth} -thread -rw=${rw} -rwmixread=70 -ioengine=libaio -bs=${bs}k -size=1G -numjobs=${numjobs} -runtime=30 -group_reporting -name=${rw}-${bs}k
+        else
+            fio -filename=${filename} -direct=1 -iodepth ${iodepth} -thread -rw=${rw} -ioengine=libaio -bs=${bs}k -size=1G -numjobs=${numjobs} -runtime=30 -group_reporting -name=${rw}-${bs}k
+        fi
+        sleep 5
+    done
+done
+````
+
+参数说明：
+
+-name: 表示测试任务名称，可以自定义
+
+-direct: 设置为1表示使用direct I/O模式，跳过缓存，直接读写硬盘；设置为0表示不使用direct I/O模式，数据会先写到缓存里，再在后台写到硬盘，读取的时候也是优先从缓存读取。
+
+-iodepth: I/O队列深度，例如-iodepth=32表示fio控制请求中的I/O最大个数为32，这里的队列深度是指每个线程的队列深度。
+
+-rw: 读写策略，可以设置为randwrite(随机写)、randread(随机读)、write(顺序写)、read(顺序读)
+
+-ioengine: I/O引擎，支持多种类型，通常使用异步I/O引擎libaio
+
+-bs: 单次I/O块大小，默认是4KB
+
+-size: 任务每个线程读写文件的大小，也可以将大小设置为百分比，例如-size=20%, fio将使用给定文件或者设备完整大小的20%
+
+-numjobs: 任务并发线程数，默认值1
+
+-runtime: 测试时间，即fio运行时长，上面的例子中设置的是600s，也可以设置为以分钟为单位，如2m。如果未指定该参数，fio会持续将size指定大小的文件，以每次bs值为块大小读写完
+
+group_reporting: 测试结果显示模式，如果指定该参数，测试结果会汇总每个线程的统计信息
+
+filename: 测试对象，可以是设备名称或者文件地址，例如 /dev/sda或者/root/test/openEuler-24.03-LLVM-riscv64-dvd.iso
+
+运行该脚本执行测试
+
+````
+$ bash fio-test.sh | tee fio-test.log
+````
+
+#### 9. netperf
+
+需要处在同一网络中的两台设备，分别作为 server 和 client
+
+##### 9.1 server 端
+
+安装 netperf
+
+````
+$ yum install -y netperf
+````
+
+在server端执行命令运行netserver，命令中用-p指定监听端口为10000
+
+````
+$ netserver -p 10000
+Starting netserver with host 'IN(6)ADDR_ANY' port '10000' and family AF_UNSPEC
+````
+
+##### 9.2 client 端
+
+安装 netperf
+
+````
+$ yum install -y netperf
+````
+
+创建 netperf-test.sh 测试脚本
+
+````
+#!/bin/bash
+
+host_ip=$1
+port=$2
+for i in 1 64 512 65536;do
+    netperf -t TCP_STREAM -H $host_ip -p $port -l 60 -- -m $i
+done
+
+for i in 1 64 128 256 512 32768;do
+    netperf -t UDP_STREAM -H $host_ip -p $port -l 60 -- -m $i
+done
+
+netperf -t TCP_RR -H $host_ip -p $port
+netperf -t TCP_CRR -H $host_ip -p $port
+netperf -t UDP_RR -H $host_ip -p $port
+````
+
+参数说明：
+
+-t：指定测试类型，如果不指定，预设值是TCP_STREAM
+
+-H：指定运行netserver的server端IP地址
+
+-p：指定监听端口，和netserver端保持一致，如果不指定，预设值是12865
+
+-l：指定测试时间长度，单位：秒，如果不指定，预设值是10秒
+
+-m：发送消息大小，单位为bytes
+
+运行该脚本执行测试
+
+````
+$ bash netperf-test.sh ${server_ip} ${server_port} | tee netperf.log
+````
+
+${server_ip} 和 ${server_port} 分别是 server 端的 ip 和 port，例如 bash netperf-test.sh 10.0.0.2 10000 | tee netperf.log
+
+#### 10. Trinity
+
+##### 10.1 安装编译所需依赖包
+
+````
+$ yum install -y gcc make
+````
+
+##### 10.2 下载 trinity 源码
+
+````
+$ git clone https://github.com/kernelslacker/trinity.git
+$ cd trinity
+````
+
+##### 10.3 编译安装
+
+###### 10.3.1 gcc 编译安装
+
+````
+$ ./configure
+$ make
+$ make install
+````
+
+###### 10.3.2 clang 编译安装
+
+修改 Makefile：
+
+将第8行 CC := gcc 改为 CC := clang
+
+在第33行后面增加一行 CFLAGS += "-Wno-error=implicit-function-declaration"
+
+````
+VERSION="2023.01"
+
+INSTALL_PREFIX ?= $(DESTDIR)
+INSTALL_PREFIX ?= $(HOME)
+NR_CPUS := $(shell grep -c ^processor /proc/cpuinfo)
+
+ifeq ($(CC),"")
+CC := clang
+endif
+CC := $(CROSS_COMPILE)$(CC)
+LD := $(CROSS_COMPILE)$(LD)
+
+CFLAGS ?= -g -O2 -D_FORTIFY_SOURCE=2
+CFLAGS += -Wall -Wextra -I. -Iinclude/ -include config.h -Wimplicit -D_GNU_SOURCE -D__linux__
+
+CCSTD := $(shell if $(CC) -std=gnu11 -S -o /dev/null -xc /dev/null >/dev/null 2>&1; then echo "-std=gnu11"; else echo "-std=gnu99"; fi)
+CFLAGS += $(CCSTD)
+
+ifneq ($(SYSROOT),)
+CFLAGS += --sysroot=$(SYSROOT)
+endif
+#CFLAGS += $(shell if $(CC) -m32 -S -o /dev/null -xc /dev/null >/dev/null 2>&1; then echo "-m32"; fi)
+CFLAGS += -Wformat=2
+CFLAGS += -Winit-self
+CFLAGS += -Wnested-externs
+CFLAGS += -Wpacked
+CFLAGS += -Wshadow
+CFLAGS += -Wswitch-enum
+CFLAGS += -Wundef
+CFLAGS += -Wwrite-strings
+CFLAGS += -Wno-format-nonliteral
+CFLAGS += -Wstrict-prototypes -Wmissing-prototypes
+CFLAGS += -fsigned-char
+CFLAGS += "-Wno-error=implicit-function-declaration"
+# BPF spew.
+CFLAGS += -Wno-missing-field-initializers
+
+# needed for show_backtrace() to work correctly.
+LDFLAGS += -rdynamic
+
+# glibc versions before 2.17 for clock_gettime
+LDLIBS += -lrt
+
+# gcc only.
+ifneq ($(shell $(CC) -v 2>&1 | grep -c "clang"), 1)
+CFLAGS += -Wlogical-op
+CFLAGS += -Wstrict-aliasing=3
+endif
+
+# Sometimes useful for debugging. more useful with clang than gcc.
+#CFLAGS += -fsanitize=address
+
+V	= @
+Q	= $(V:1=)
+QUIET_CC = $(Q:@=@echo    '  CC	'$@;)
+
+
+all: trinity
+
+test:
+	@if [ ! -f config.h ]; then  echo "[1;31mRun configure.sh first.[0m" ; exit; fi
+
+
+MACHINE		:= $(shell $(CC) -dumpmachine)
+SYSCALLS_ARCH	:= $(shell case "$(MACHINE)" in \
+		   (sh*) echo syscalls/sh/*.c ;; \
+		   (ia64*) echo syscalls/ia64/*.c ;; \
+		   (ppc*|powerpc*) echo syscalls/ppc/*.c ;; \
+		   (sparc*) echo syscalls/sparc/*.c ;; \
+		   (x86_64*) echo syscalls/x86/*.c \
+				  syscalls/x86/i386/*.c \
+				  syscalls/x86/x86_64/*.c;; \
+		   (i?86*) echo syscalls/x86/*.c \
+				syscalls/x86/i386/*.c;; \
+		   (s390x*) echo syscalls/s390x/*.c ;; \
+		   esac)
+
+VERSION_H	:= include/version.h
+
+HEADERS		:= $(patsubst %.h,%.h,$(wildcard *.h)) $(patsubst %.h,%.h,$(wildcard syscalls/*.h)) $(patsubst %.h,%.h,$(wildcard ioctls/*.h))
+
+SRCS		:= $(wildcard *.c) \
+		   $(wildcard fds/*.c) \
+		   $(wildcard ioctls/*.c) \
+		   $(wildcard mm/*.c) \
+		   $(wildcard net/*.c) \
+		   $(wildcard rand/*.c) \
+		   $(wildcard syscalls/*.c) \
+		   $(SYSCALLS_ARCH)
+
+OBJS		:= $(sort $(patsubst %.c,%.o,$(wildcard *.c))) \
+		   $(sort $(patsubst %.c,%.o,$(wildcard fds/*.c))) \
+		   $(sort $(patsubst %.c,%.o,$(wildcard ioctls/*.c))) \
+		   $(sort $(patsubst %.c,%.o,$(wildcard mm/*.c))) \
+		   $(sort $(patsubst %.c,%.o,$(wildcard net/*.c))) \
+		   $(sort $(patsubst %.c,%.o,$(wildcard rand/*.c))) \
+		   $(sort $(patsubst %.c,%.o,$(wildcard syscalls/*.c))) \
+		   $(sort $(patsubst %.c,%.o,$(SYSCALLS_ARCH)))
+
+DEPDIR= .deps
+
+-include $(SRCS:%.c=$(DEPDIR)/%.d)
+
+$(VERSION_H): scripts/gen-versionh.sh Makefile $(wildcard .git)
+	@scripts/gen-versionh.sh
+
+trinity: test $(OBJS) $(HEADERS)
+	$(QUIET_CC)$(CC) $(CFLAGS) $(LDFLAGS) -o trinity $(OBJS) $(LDLIBS)
+	@mkdir -p tmp
+
+df = $(DEPDIR)/$(*D)/$(*F)
+
+%.o : %.c | $(VERSION_H)
+	$(QUIET_CC)$(CC) $(CFLAGS) -o $@ -c $<
+	@mkdir -p $(DEPDIR)/$(*D)
+	@$(CC) -MM $(CFLAGS) $*.c > $(df).d
+	@mv -f $(df).d $(df).d.tmp
+	@sed -e 's|.*:|$*.o:|' <$(df).d.tmp > $(df).d
+	@sed -e 's/.*://' -e 's/\\$$//' < $(df).d.tmp | fmt -1 | \
+	  sed -e 's/^ *//' -e 's/$$/:/' >> $(df).d
+	@rm -f $(df).d.tmp
+
+clean:
+	@rm -f $(OBJS)
+	@rm -f core.*
+	@rm -f trinity
+	@rm -f tags
+	@rm -rf $(DEPDIR)/*
+	@rm -rf trinity-coverity.tar.xz cov-int
+	@rm -f $(VERSION_H)
+
+tag:
+	@git tag -a v$(VERSION) -m "$(VERSION) release."
+
+tarball:
+	@git archive --format=tar --prefix=trinity-$(VERSION)/ HEAD > trinity-$(VERSION).tar
+	@xz -9 trinity-$(VERSION).tar
+
+install: trinity
+	install -d -m 755 $(INSTALL_PREFIX)/bin
+	install trinity $(INSTALL_PREFIX)/bin
+
+tags:	$(SRCS)
+	@ctags -R --exclude=tmp
+
+scan:
+	@scan-build --use-analyzer=/usr/bin/clang make -j $(NR_CPUS)
+
+coverity:
+	@rm -rf cov-int trinity-coverity.tar.xz
+	@cov-build --dir cov-int make -j $(NR_CPUS)
+	@tar cJvf trinity-coverity.tar.xz cov-int
+
+cppcheck:
+	@scripts/cppcheck.sh
+````
+
+编译并安装
+
+````
+$ ./configure
+$ make
+$ make install
+````
+
+##### 10.4 执行测试
+
+设置 trinity 文件夹及其下所有文件和子目录权限为 777
+
+````
+$ cd ..
+$ chmod 777 -R trinity
+````
+
+由于 Trinity 不能以 root 身份运行，所以需要创建一个非root的新用户
+
+````
+$ useradd test    //创建用户test
+$ passwd test     //设置用户test密码
+$ su test         //切换到用户test
+````
+
+执行测试，命令参数
+
+````
+$ ./trinity --help
+Trinity 2023.01  Dave Jones <davej@codemonkey.org.uk>
+shm:0x3fa3efd000-0x3fb0ad9d08 (4 pages)
+./trinity
+ --arch, -a: selects syscalls for the specified architecture (32 or 64). Both by default.
+ --bdev, -b <node>:  Add /dev node to list of block devices to use for destructive tests..
+ --children,-C: specify number of child processes
+ --debug,-D: enable debug
+ --dropprivs, -X: if run as root, switch to nobody [EXPERIMENTAL]
+ --exclude,-x: don't call a specific syscall
+ --enable-fds/--disable-fds= {sockets,pipes,perf,epoll,eventfd,pseudo,timerfd,testfile,memfd,drm}
+ --ftrace-dump-file: specify file that ftrace buffer gets dumped to if kernel becomes tainted.
+ --group,-g = {vfs,vm}: only run syscalls from a certain group.
+ --ioctls,-I: list all ioctls.
+ --kernel_taint, -T: controls which kernel taint flags should be considered, for more details refer to README file. 
+ --list,-L: list all syscalls known on this architecture.
+ --logging,-l [off, <dir>, <hostname>] : disable logging to files, log to a directory, or log over udp to a remote trinity server.
+ --domain,-P: specify specific network domain for sockets.
+ --no_domain,-E: specify network domains to be excluded from testing.
+ --quiet,-q: less output.
+ --random,-r#: pick N syscalls at random and just fuzz those
+ --stats: show errno distribution per syscall before exiting
+ --syslog,-S: log important info to syslog. (useful if syslog is remote)
+ --verbose,-v: increase output verbosity.
+ --victims,-V: path to victim files.
+
+ -c#,@: target specific syscall (takes syscall name as parameter and optionally 32 or 64 as bit-width. Default:both).
+ -N#: do # syscalls then exit.
+ -s#: use # as random seed.
+````
+
+执行测试，设置测试时内存限制为10GB
+
+````
+$ ./trinity -N 10000 | tee output.log
+````
+
+
+
+
+
+
+
+
+
+
+
