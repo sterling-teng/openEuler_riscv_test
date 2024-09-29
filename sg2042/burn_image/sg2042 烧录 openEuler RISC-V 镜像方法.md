@@ -1,4 +1,4 @@
-sg2042 烧录 openEuler RISC-V 镜像方法
+sg2042 烧录 openEuler RISC-V 24.03 LTS镜像方法
 
 #### 1. 烧录启动固件到sd卡
 
@@ -48,6 +48,30 @@ $ sudo umount /mnt
 以上所有操作也可以在 windows 系统上执行，烧录可以用 balenaEtcher 
 
 sd 和 ssd 烧录完成后，将他们都装回 sg2042 就可以开机启动了
+
+#### 3. 烧录 openEuler RISC-V 24.09 镜像
+
+windows 11 可以直接使用 balenaEtcher 工具烧录
+
+##### 3.1 烧录 image
+
+如果直接烧录到sd卡中，可以直接在sd卡里烧录 https://repo.tarsier-infra.isrc.ac.cn/openEuler-RISC-V/testing/24.09_artifacts/embedded_image/riscv64/SG2042/openEuler-24.09-riscv64-sg2042.img.zip
+
+如果要烧录到ssd：
+
+sd卡里烧录固件linuxboot https://repo.tarsier-infra.isrc.ac.cn/openEuler-RISC-V/testing/24.09_artifacts/embedded_image/riscv64/SG2042/sg2042_firmware_linuxboot.img.zip
+
+ssd里烧录openEuler RISC-V image  https://repo.tarsier-infra.isrc.ac.cn/openEuler-RISC-V/testing/24.09_artifacts/embedded_image/riscv64/SG2042/openEuler-24.09-riscv64-sg2042.img.zip
+
+烧录完成后无需做任何配置文件的修改
+
+##### 3.2 iso安装
+
+sd卡里烧录uefi固件 https://repo.tarsier-infra.isrc.ac.cn/openEuler-RISC-V/testing/24.09_artifacts/embedded_image/riscv64/SG2042/sg2042_firmware_uefi.img.zip
+
+U盘烧录 iso 文件后进行安装 http://121.36.84.172/dailybuild/EBS-openEuler-24.09/openeuler-2024-09-26-08-33-57/ISO/riscv64/openEuler-24.09-riscv64-dvd.iso
+
+
 
 
 
