@@ -10,7 +10,7 @@ do
   if [[ $pkg != *".src" && $pkg != *"debug"* ]]; then
     mkdir gpgcheck && cd gpgcheck
     dnf download $pkg
-    echo "ls $(ls)"
+    echo "rpm pkg: $(ls)"
     rpmname=$(ls)
     rpm -K $rpmname | grep "digests signatures OK"
     if [ $? -eq 0 ]; then
