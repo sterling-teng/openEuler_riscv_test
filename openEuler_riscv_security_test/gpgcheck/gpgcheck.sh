@@ -4,11 +4,11 @@ dnf update
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-openEuler
 pkglist=$(dnf list available | awk '/Available Packages/{flag=1; next} flag' | awk '{print $1}')
 rm -rf gpgcheck
+mkdir gpgcheck && cd gpgcheck
 for pkg in $pkglist
 do
   echo $pkg
   if [[ $pkg != *".src" && $pkg != *"debug"* ]]; then
-    mkdir gpgcheck && cd gpgcheck
     dnf download $pkg
     echo "rpm pkg: $(ls)"
     rpmname=$(ls)
@@ -18,7 +18,7 @@ do
     else
        echo "$pkg gpg check failed"
     fi
-    cd .. && rm -rf gpgcheck
+    rm -rf ./*
   fi
 done
 
