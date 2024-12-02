@@ -32,8 +32,8 @@ run() {
         csmith > $cfile
         gcc $cfile -I/root/csmith/install/include -o random_gcc
         clang $cfile -I/root/csmith/install/include -o random_clang
-        gcc_checksum=$(./random_gcc)
-        clang_checksum=$(./random_clang)
+        gcc_checksum=$(timeout 5s ./random_gcc)
+        clang_checksum=$(timeout 5s ./random_clang)
         gcc_value=${gcc_checksum:11}
         clang_value=${clang_checksum:11}
         if [ -n "$gcc_checksum" ] && [ -n "clang_value" ]; then
