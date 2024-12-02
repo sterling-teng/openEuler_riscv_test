@@ -47,6 +47,7 @@ run() {
 	       fi
            total=$(($total + 1))
            int=$(($int + 1))
+        fi
         rm -rf $cfile
         rm -rf random_gcc
         rm -rf random_clang
