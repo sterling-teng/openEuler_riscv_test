@@ -45,8 +45,7 @@ $ systemctl status mysqld.service
 
 ```
 $ cat /var/log/mysql/mysqld.log | grep password
-2024-12-09T13:22:13.151154Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecur
-e option.
+2024-12-09T13:22:13.151154Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
 ```
 
 从查询结果可以看出没有密码
@@ -54,7 +53,7 @@ e option.
 登录 mysql
 
 ````
-[root@openeuler-riscv64 ~]# mysql -u root -p
+$ mysql -u root -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 9
@@ -100,7 +99,7 @@ Database changed
 mysql> show tables;
 Empty set (0.02 sec)
 
-mysql> exit
+mysql> quit
 ````
 
 ### 3. 执行测试

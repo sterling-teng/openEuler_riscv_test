@@ -152,6 +152,14 @@ LRANGE_600 (first 600 elements): 16337.20 requests per second
 MSET (10 keys): 66006.60 requests per second
 ````
 
+开启10个redis-benchmark线程，创建1000个连接并随机发送10000000个set、get请求
+
+```
+$ redis-benchmark -h 127.0.0.1 -c 1000 -n 10000000 -r 10000000 -t set,get --threads 10
+```
+
+
+
 
 
 参考：
