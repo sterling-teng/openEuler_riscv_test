@@ -40,7 +40,7 @@ $ gcc extr_Arduinotestsdevicetest_libcmemmove1.c_mymemmove_Final.c -o a.out
 $ ./a.out 0
 ````
 
-要查看该测试程序可用的所有输入，只需要运行程序而不向其传递参数即可。
+要查看该测试程序可用的所有输入，可不带参数地运行可执行程序。
 
 ````
 $ ./a.out
