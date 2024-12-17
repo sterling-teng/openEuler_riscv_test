@@ -1068,7 +1068,7 @@ netperf -t UDP_RR -H $host_ip -p $port
 $ bash netperf-test.sh ${server_ip} ${server_port} | tee netperf.log
 ````
 
-${server_ip} 和 ${server_port} 分别是 server 端的 ip 和 port，例如 bash netperf-test.sh 10.0.0.2 10000 | tee netperf.log
+`${server_ip}` 和 `${server_port}` 分别是 server 端的 ip 和 port，例如 bash netperf-test.sh 10.0.0.2 10000 | tee netperf.log
 
 #### 10. Trinity
 
