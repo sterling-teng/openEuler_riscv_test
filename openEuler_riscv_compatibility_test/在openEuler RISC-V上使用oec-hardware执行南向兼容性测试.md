@@ -47,6 +47,13 @@ $ setenforce 0
 
 ![](../images/oech-server-web1.jpg)
 
+由于测试 ethernet 时会使用 qperf，所以提前需要在 server 端安装并启动 qperf 监听，qperf 默认监听端口是 19765
+
+````
+$ yum install qperf
+$ qperf
+````
+
 ##### 3.2Client 端
 
 sg2042 作为 client 端，安装 oec-hardware 
