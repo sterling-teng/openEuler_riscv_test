@@ -33,6 +33,8 @@ $ unzstd root-20231130-224942.ext4.zst
 
 #### 3. 烧录
 
+##### 3.1 烧录非 uefi 镜像
+
 按住板上的BOOT键不放，然后插入USB-C 线，线的另一头接PC，即可进入USB烧录模式
 
 确认进入USB烧录模式
@@ -176,6 +178,39 @@ Finished. Total time: 331.617s
 以上烧录命令可以用一个 [burn_lpi4a.sh](./burn_lpi4a.sh) 脚本来执行 
 
 烧录完成后重启板子即可
+
+##### 3.2 烧录 uefi 镜像
+
+烧录 uefi 镜像，需要将 image 烧录到 SD 卡，将固件和操作系统根分区文件烧录到板子
+
+使用 dd 命令将 image 烧录到 SD 卡，将 dd 命令写成 shell 脚本 [sd-burn-image.sh](./sd-burn-image.sh)，脚本内容：
+
+````
+#!/bin/bash
+
+set -ex
+
+IMG="./images/openEuler-24.03SP1-V1-base-lpi4a-devel-uefi.img"
+TF="/dev/sdb"
+
+sudo dd if=${IMG} of=${TF} bs=1M iflag=fullblock oflag=direct conv=fsync status=progress
+````
+
+将 [burn_lpi4a.sh](./burn_lpi4a.sh) 脚本稍作修改后，用该脚本将固件和操作系统根分区文件烧录到板子
+
+````
+#! /bin/sh
+
+sudo ./fastboot flash ram ./images/u-boot-with-spl-uefi.bin
+sudo ./fastboot reboot
+sleep 10
+sudo ./fastboot flash uboot ./images/u-boot-with-spl-uefi.bin
+sudo ./fastboot flash boot ./images/boot-uefi.ext4
+````
+
+烧录完成后，将 SD 卡插入并重启
+
+
 
 参考：
 
