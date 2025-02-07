@@ -1,0 +1,371 @@
+[
+{"id":"1.1.1","description":"禁止存在无属主或属组的文件或目录","level": "要求","status":"成功","details":"","link":"/usr/local/secureguardian/baseline/1.1.1.md"}
+,
+{"id":"1.1.2","description":"禁止存在空链接文件","level": "要求","status":"失败","details":"找到空链接文件：/usr/share/licenses/glib2/COPYING","link":"/usr/local/secureguardian/baseline/1.1.2.md"}
+,
+{"id":"1.1.3","description":"禁止存在隐藏的可执行文件","level": "要求","status":"失败","details":"找到可执行的隐藏文件：/boot/.vmlinuz-6.6.0-72.0.0.76.oe2403sp1.riscv64.hmac","link":"/usr/local/secureguardian/baseline/1.1.3.md"}
+,
+{"id":"1.1.4","description":"确保全局可写目录已设置sticky位","level": "要求","status":"成功","details":"所有全局可写目录均已正确设置粘滞位。","link":"/usr/local/secureguardian/baseline/1.1.4.md"}
+,
+{"id":"1.1.5","description":"确保UMASK配置正确","level": "要求","status":"失败","details":"UMASK 未设置为 077。","link":"/usr/local/secureguardian/baseline/1.1.5.md"}
+,
+{"id":"1.1.6","description":"禁止存在全局可写的文件","level": "要求","status":"成功","details":"find: ‘/proc/12960’: No such file or directory<br><br>未发现全局可写文件。","link":"/usr/local/secureguardian/baseline/1.1.6.md"}
+,
+{"id":"1.1.7","description":"确保移除不需要的文件系统挂载支持","level": "要求","status":"失败","details":"文件系统 cramfs 未被禁止挂载。","link":"/usr/local/secureguardian/baseline/1.1.7.md"}
+,
+{"id":"1.1.8","description":"确保无需修改的分区以只读方式挂载","level": "要求","status":"成功","details":"未提供挂载点路径参数，不执行检查并假定检查通过。","link":"/usr/local/secureguardian/baseline/1.1.8.md"}
+,
+{"id":"1.1.9","description":"确保无需挂载设备的分区以nodev方式挂载","level": "要求","status":"成功","details":"所有分区（除默认排除目录外）均已正确以nodev方式挂载。","link":"/usr/local/secureguardian/baseline/1.1.9.md"}
+,
+{"id":"1.1.10","description":"确保无可执行文件的分区以noexec方式挂载","level": "要求","status":"成功","details":"未提供挂载点路径参数，不执行检查并假定检查通过。","link":"/usr/local/secureguardian/baseline/1.1.10.md"}
+,
+{"id":"1.1.11","description":"确保可移动设备分区以noexec、nodev方式挂载","level": "要求","status":"成功","details":"所有可移动设备分区均已以noexec和nodev方式挂载。","link":"/usr/local/secureguardian/baseline/1.1.11.md"}
+,
+{"id":"1.1.12","description":"确保无需SUID/SGID的分区以nosuid方式挂载","level": "要求","status":"成功","details":"所有关心的分区均已以nosuid方式挂载，或者特殊文件系统和挂载点已被正确排除。","link":"/usr/local/secureguardian/baseline/1.1.12.md"}
+,
+{"id":"1.1.13","description":"确保删除文件不必要的SUID和SGID位","level": "要求","status":"失败","details":"系统中存在不必要的SUID/SGID位设置的文件：<br><br>/usr/bin/pkexec","link":"/usr/local/secureguardian/baseline/1.1.13.md"}
+,
+{"id":"1.1.14","description":"确保关键文件、目录权限最小化","level": "要求","status":"成功","details":"所有检测的文件和目录权限设置正确。","link":"/usr/local/secureguardian/baseline/1.1.14.md"}
+,
+{"id":"1.1.15","description":"确保用户可打开文件数量配置正确","level": "要求","status":"成功","details":"软限制值 1024 符合或低于限值。<br><br>硬限制值 524288 符合或低于限值。","link":"/usr/local/secureguardian/baseline/1.1.15.md"}
+,
+{"id":"1.1.16","description":"确保软、硬链接文件保护配置正确","level": "要求","status":"成功","details":"软链接和硬链接保护已正确配置。","link":"/usr/local/secureguardian/baseline/1.1.16.md"}
+,
+{"id":"1.1.17","description":"避免使用USB存储","level": "建议","status":"失败","details":"USB存储未被禁用。","link":"/usr/local/secureguardian/baseline/1.1.17.md"}
+,
+{"id":"1.1.18","description":"应当分区管理硬盘数据","level": "建议","status":"失败","details":"目录 /home 没有单独挂载分区。<br><br>目录 /var 没有单独挂载分区。<br><br>目录 /usr 没有单独挂载分区。<br><br>一些建议的目录未单独挂载分区，请检查。","link":"/usr/local/secureguardian/baseline/1.1.18.md"}
+,
+{"id":"1.1.19","description":"确保LD_LIBRARY_PATH变量定义正确","level": "要求","status":"成功","details":"LD_LIBRARY_PATH 环境变量设置检查通过，未在用户配置中发现不当设置。","link":"/usr/local/secureguardian/baseline/1.1.19.md"}
+,
+{"id":"1.1.20","description":"确保用户PATH变量被严格定义","level": "要求","status":"成功","details":"检查系统级配置中PATH设置...<br><br>PATH 环境变量设置检查通过，未在系统和用户配置中发现不当设置。","link":"/usr/local/secureguardian/baseline/1.1.20.md"}
+,
+{"id":"1.2.1","description":"禁止安装FTP客户端","level": "要求","status":"成功","details":"检测通过。","link":"/usr/local/secureguardian/baseline/1.2.1.md"}
+,
+{"id":"1.2.2","description":"禁止安装TFTP客户端","level": "要求","status":"成功","details":"检测通过。TFTP客户端未安装。","link":"/usr/local/secureguardian/baseline/1.2.2.md"}
+,
+{"id":"1.2.3","description":"禁止安装Telnet客户端","level": "要求","status":"成功","details":"检测通过。Telnet客户端未安装。","link":"/usr/local/secureguardian/baseline/1.2.3.md"}
+,
+{"id":"1.2.4","description":"禁止安装不安全的SNMP协议版本","level": "要求","status":"成功","details":"检测通过。SNMP版本未安装。","link":"/usr/local/secureguardian/baseline/1.2.4.md"}
+,
+{"id":"1.2.5","description":"禁止安装python2","level": "要求","status":"成功","details":"检测通过。python2未安装。","link":"/usr/local/secureguardian/baseline/1.2.5.md"}
+,
+{"id":"1.2.6","description":"确保yum源配置GPG校验","level": "要求","status":"失败","details":"正在检查文件: /etc/yum.repos.d/hw.repo<br><br>文件 /etc/yum.repos.d/hw.repo 中存在启用的仓库没有显式设置 gpgcheck=1<br><br>正在检查文件: /etc/yum.repos.d/openEuler.repo<br><br>文件 /etc/yum.repos.d/openEuler.repo 中存在启用的仓库没有显式设置 gpgcheck=1<br><br>存在未正确配置显式的gpgcheck=1的启用的yum源。","link":"/usr/local/secureguardian/baseline/1.2.6.md"}
+,
+{"id":"1.2.7","description":"禁止启用debug-shell服务","level": "要求","status":"成功","details":"检测通过。debug-shell服务已禁用。","link":"/usr/local/secureguardian/baseline/1.2.7.md"}
+,
+{"id":"1.2.8","description":"禁止安装rsync服务","level": "要求","status":"成功","details":"rsync软件已安装。<br><br>rsync服务已禁用或被屏蔽，符合规范要求。","link":"/usr/local/secureguardian/baseline/1.2.8.md"}
+,
+{"id":"1.2.9","description":"禁止安装avahi服务","level": "要求","status":"成功","details":"检测成功:avahi主服务软件未安装，符合安全规范。","link":"/usr/local/secureguardian/baseline/1.2.9.md"}
+,
+{"id":"1.2.10","description":"禁止安装LDAP服务","level": "要求","status":"成功","details":"检查通过,openldap-servers软件未安装，符合规范要求。","link":"/usr/local/secureguardian/baseline/1.2.10.md"}
+,
+{"id":"1.2.11","description":"禁止安装打印服务","level": "要求","status":"成功","details":"检测成功:cups主服务软件未安装，符合安全规范。","link":"/usr/local/secureguardian/baseline/1.2.11.md"}
+,
+{"id":"1.2.12","description":"禁止安装NIS服务端","level": "要求","status":"成功","details":"NIS服务端软件ypserv未安装，符合规范要求。","link":"/usr/local/secureguardian/baseline/1.2.12.md"}
+,
+{"id":"1.2.13","description":"禁止安装NIS客户端","level": "要求","status":"成功","details":"NIS客户端软件ypbind未安装，符合规范要求。","link":"/usr/local/secureguardian/baseline/1.2.13.md"}
+,
+{"id":"1.2.14","description":"禁止安装LDAP客户端","level": "要求","status":"成功","details":"LDAP客户端软件openldap-clients未安装，符合安全规范。","link":"/usr/local/secureguardian/baseline/1.2.14.md"}
+,
+{"id":"1.2.15","description":"禁止安装网络嗅探类工具","level": "要求","status":"失败","details":"检测不通过。已安装的网络嗅探工具RPM包: tcpdump nmap","link":"/usr/local/secureguardian/baseline/1.2.15.md"}
+,
+{"id":"1.2.16","description":"禁止安装调测类工具","level": "要求","status":"失败","details":"检测不通过。已安装的调试工具RPM包: strace gdb binutils","link":"/usr/local/secureguardian/baseline/1.2.16.md"}
+,
+{"id":"1.2.17","description":"禁止安装开发编译类工具","level": "要求","status":"失败","details":"检测不通过。已安装的开发编译类工具RPM包: libtool","link":"/usr/local/secureguardian/baseline/1.2.17.md"}
+,
+{"id":"1.2.18","description":"避免安装X Window系统","level": "建议","status":"失败","details":"检测不通过。已安装X Window系统的组件。","link":"/usr/local/secureguardian/baseline/1.2.18.md"}
+,
+{"id":"1.2.19","description":"避免安装HTTP服务","level": "建议","status":"成功","details":"检测通过。HTTP服务(httpd)未安装。","link":"/usr/local/secureguardian/baseline/1.2.19.md"}
+,
+{"id":"1.2.20","description":"避免安装samba服务","level": "建议","status":"成功","details":"检测通过。","link":"/usr/local/secureguardian/baseline/1.2.20.md"}
+,
+{"id":"1.2.21","description":"避免启用DNS服务","level": "建议","status":"成功","details":"DNS服务（named）已禁用或未安装。","link":"/usr/local/secureguardian/baseline/1.2.21.md"}
+,
+{"id":"1.2.22","description":"避免启用NFS服务","level": "建议","status":"成功","details":"NFS服务（nfs-server）已禁用或未安装。","link":"/usr/local/secureguardian/baseline/1.2.22.md"}
+,
+{"id":"1.2.23","description":"避免启用RPC服务","level": "建议","status":"失败","details":"检测不通过。rpcbind服务已启用。","link":"/usr/local/secureguardian/baseline/1.2.23.md"}
+,
+{"id":"1.2.24","description":"避免启用DHCP服务","level": "建议","status":"成功","details":"检测通过。DHCP服务（dhcpd）未启用。","link":"/usr/local/secureguardian/baseline/1.2.24.md"}
+,
+{"id":"2.1.1","description":"禁止无需登录的账号设置登录能力","level": "要求","status":"失败","details":"例外账号 root 不检查。<br><br>检测不成功: 账号 openeuler 应该禁止登录,如有需要请-e添加例外","link":"/usr/local/secureguardian/baseline/2.1.1.md"}
+,
+{"id":"2.1.2","description":"禁止存在不使用的账号","level": "要求","status":"失败","details":"检测失败: 发现可能未使用的账号：openeuler","link":"/usr/local/secureguardian/baseline/2.1.2.md"}
+,
+{"id":"2.1.3","description":"确保不同账号初始分配不同的组ID","level": "要求","status":"成功","details":"检测成功: 没有发现初始分配了相同组ID的不同用户账号。","link":"/usr/local/secureguardian/baseline/2.1.3.md"}
+,
+{"id":"2.1.4","description":"禁止存在UID为0的非root账号","level": "要求","status":"成功","details":"检测成功: 除例外账号外，没有发现非root的UID为0的账号。","link":"/usr/local/secureguardian/baseline/2.1.4.md"}
+,
+{"id":"2.1.5","description":"确保账号、组及口令文件权限正确","level": "要求","status":"成功","details":"检测成功:所有文件权限均符合预期。","link":"/usr/local/secureguardian/baseline/2.1.5.md"}
+,
+{"id":"2.1.6","description":"确保账号拥有自己的Home目录","level": "要求","status":"成功","details":"检测成功: 所有用户的Home目录都存在且属主正确。","link":"/usr/local/secureguardian/baseline/2.1.6.md"}
+,
+{"id":"2.1.7","description":"确保/etc/passwd中的组都存在","level": "要求","status":"成功","details":"检测成功: /etc/passwd中的所有组都在/etc/group中存在。","link":"/usr/local/secureguardian/baseline/2.1.7.md"}
+,
+{"id":"2.1.8","description":"确保UID唯一","level": "要求","status":"成功","details":"检测成功: 所有UID均唯一","link":"/usr/local/secureguardian/baseline/2.1.8.md"}
+,
+{"id":"2.1.9","description":"确保账号名唯一","level": "要求","status":"成功","details":"检测成功: 所有账号名唯一。","link":"/usr/local/secureguardian/baseline/2.1.9.md"}
+,
+{"id":"2.1.10","description":"确保GID唯一","level": "要求","status":"成功","details":"检测成功: 所有GID唯一。","link":"/usr/local/secureguardian/baseline/2.1.10.md"}
+,
+{"id":"2.1.11","description":"确保组名唯一","level": "要求","status":"成功","details":"检测成功: 所有用户组名唯一。","link":"/usr/local/secureguardian/baseline/2.1.11.md"}
+,
+{"id":"2.1.12","description":"应当正确设置账号有效期","level": "建议","status":"失败","details":"检测失败: 账号 bin 未设置过期时间。","link":"/usr/local/secureguardian/baseline/2.1.12.md"}
+,
+{"id":"2.1.13","description":"避免Home目录下存在.forward文件","level": "建议","status":"成功","details":"检查通过，不存在.forward文件。","link":"/usr/local/secureguardian/baseline/2.1.13.md"}
+,
+{"id":"2.1.14","description":"避免Home目录下存在.netrc文件","level": "建议","status":"成功","details":"检测成功: 所有用户的Home目录下均不存在 .netrc 文件。","link":"/usr/local/secureguardian/baseline/2.1.14.md"}
+,
+{"id":"2.2.1","description":"确保口令复杂度设置正确","level": "要求","status":"失败","details":"/etc/security/pwquality.conf 中存在以下问题：<br><br>- 未为root用户启用强制密码复杂度要求<br><br>/etc/security/pwquality.conf 配置不满足要求，需要检查其他PAM配置。<br><br>/etc/pam.d/system-auth 中存在以下问题：<br><br>- 最小长度设置不符合要求（应为8）<br><br>- 最小字符类别设置不符合要求（应为3）<br><br>- 未为root用户启用强制密码复杂度要求<br><br>/etc/pam.d/system-auth 配置不满足密码复杂度要求。","link":"/usr/local/secureguardian/baseline/2.2.1.md"}
+,
+{"id":"2.2.2","description":"禁止使用历史口令","level": "要求","status":"成功","details":"所有配置文件均符合历史口令禁用要求。","link":"/usr/local/secureguardian/baseline/2.2.2.md"}
+,
+{"id":"2.2.3","description":"确保用户修改自身口令时需验证旧口令","level": "要求","status":"成功","details":"检测通过: /etc/pam.d/system-auth 中配置了要求验证旧口令。<br><br>检测通过: /etc/pam.d/password-auth 中配置了要求验证旧口令。<br><br>所有相关配置文件均符合要求验证旧口令的配置。","link":"/usr/local/secureguardian/baseline/2.2.3.md"}
+,
+{"id":"2.2.4","description":"确保口令中不包含账号字符串","level": "要求","status":"成功","details":"正在检查文件：/etc/pam.d/system-auth<br><br>/etc/pam.d/system-auth 中未找到 'usercheck=0' 配置，符合要求。<br><br>正在检查文件：/etc/pam.d/password-auth<br><br>/etc/pam.d/password-auth 中未找到 'usercheck=0' 配置，符合要求。<br><br>所有检查的配置文件均符合要求。","link":"/usr/local/secureguardian/baseline/2.2.4.md"}
+,
+{"id":"2.2.5","description":"确保口令使用强Hash算法加密","level": "要求","status":"成功","details":"/etc/pam.d/system-auth 没有使用被认为较弱的Hash算法。<br><br>/etc/pam.d/password-auth 没有使用被认为较弱的Hash算法。<br><br>所有相关配置文件均未使用被认为较弱的Hash算法。","link":"/usr/local/secureguardian/baseline/2.2.5.md"}
+,
+{"id":"2.2.6","description":"确保弱口令字典设置正确","level": "要求","status":"成功","details":"正在检查 /etc/pam.d/system-auth ...<br><br>/etc/pam.d/system-auth 配置了弱口令字典检查。<br><br>正在检查 /etc/pam.d/password-auth ...<br><br>/etc/pam.d/password-auth 配置了弱口令字典检查。<br><br>正在检查 /etc/security/pwquality.conf ...<br><br>/etc/security/pwquality.conf 未明确禁用弱口令字典检查。<br><br>弱口令字典检查配置正确。","link":"/usr/local/secureguardian/baseline/2.2.6.md"}
+,
+{"id":"2.2.7","description":"确保口令有效期设置正确","level": "要求","status":"失败","details":"检测失败: /etc/login.defs 口令最大有效期设置为99999天，应该设置为90天或更短。<br><br>用户 root 口令最大有效期设置为99999天，超过了90天的建议设置。<br><br>用户 openeuler 口令最大有效期设置为99999天，超过了90天的建议设置。<br><br>部分用户口令有效期设置不符合要求。<br><br>存在配置不符合要求。","link":"/usr/local/secureguardian/baseline/2.2.7.md"}
+,
+{"id":"2.2.8","description":"禁止空口令登录","level": "要求","status":"成功","details":"检测通过：已正确配置禁止空口令登录。","link":"/usr/local/secureguardian/baseline/2.2.8.md"}
+,
+{"id":"2.2.9","description":"确保Grub已设置口令保护","level": "要求","status":"成功","details":"检测通过：已在 /boot/efi/EFI/openEuler/grub.cfg 中配置GRUB口令保护。","link":"/usr/local/secureguardian/baseline/2.2.9.md"}
+,
+{"id":"2.2.10","description":"确保单用户模式已设置口令保护","level": "要求","status":"成功","details":"检测成功:rescue.service已正确配置使用systemd-sulogin-shell。<br><br>检测成功:emergency.service已正确配置使用systemd-sulogin-shell。","link":"/usr/local/secureguardian/baseline/2.2.10.md"}
+,
+{"id":"2.2.11","description":"确保账号在首次登录时强制修改口令","level": "要求","status":"失败","details":"账号 openeuler 未设置首次登录时强制修改口令。<br><br>检测未通过: 存在未设置首次登录时强制修改口令的账号。","link":"/usr/local/secureguardian/baseline/2.2.11.md"}
+,
+{"id":"2.3.1","description":"确保登录失败一定次数后锁定账号","level": "要求","status":"失败","details":"错误：/etc/pam.d/system-auth 中 unlock_time 设置不符合要求（应为 300 秒）。<br><br>错误：/etc/pam.d/password-auth 中 unlock_time 设置不符合要求（应为 300 秒）。<br><br>检查失败:存在配置不符合要求，请检查。","link":"/usr/local/secureguardian/baseline/2.3.1.md"}
+,
+{"id":"2.3.2","description":"确保会话超时时间设置正确","level": "要求","status":"失败","details":"检测失败：会话超时时间未在 /etc/profile 中设置。","link":"/usr/local/secureguardian/baseline/2.3.2.md"}
+,
+{"id":"2.3.3","description":"确保Warning Banners包含合理的信息","level": "要求","status":"成功","details":"检查成功:所有检查的文件均符合要求。","link":"/usr/local/secureguardian/baseline/2.3.3.md"}
+,
+{"id":"2.3.4","description":"应当正确配置Banner路径","level": "要求","status":"成功","details":"检测通过：Banner正确配置为/etc/issue.net。","link":"/usr/local/secureguardian/baseline/2.3.4.md"}
+,
+{"id":"2.4.1","description":"限制历史命令记录数量","level": "建议","status":"失败","details":"环境变量 HISTSIZE 设置不符合要求（当前值：1000，期望值：1-100）。<br><br>检查失败:存在配置不符合要求，请检查。","link":"/usr/local/secureguardian/baseline/2.4.1.md"}
+,
+{"id":"2.4.2","description":"应当启用enforce模式","level": "建议","status":"失败","details":"检测失败:SELinux未配置为强制模式。","link":"/usr/local/secureguardian/baseline/2.4.2.md"}
+,
+{"id":"2.4.3","description":"应当正确配置SELinux策略","level": "建议","status":"成功","details":"检测成功:SELinux策略配置正确。","link":"/usr/local/secureguardian/baseline/2.4.3.md"}
+,
+{"id":"2.4.4","description":"确保su受限使用","level": "要求","status":"成功","details":"检查成功:su使用受到正确限制。","link":"/usr/local/secureguardian/baseline/2.4.4.md"}
+,
+{"id":"2.4.5","description":"确保普通用户通过sudo运行特权程序","level": "要求","status":"成功","details":"检测成功: 未发现非排除用户配置的sudo权限。","link":"/usr/local/secureguardian/baseline/2.4.5.md"}
+,
+{"id":"2.4.6","description":"确保sudoers不能配置低权限用户可写的脚本","level": "要求","status":"成功","details":"检测成功: 未发现低权限用户可写的sudo配置脚本。","link":"/usr/local/secureguardian/baseline/2.4.6.md"}
+,
+{"id":"2.4.7","description":"确保普通用户不能借助pkexec配置提权root","level": "要求","status":"失败","details":"检测失败: 规则文件不存在: /etc/polkit-1/rules.d/50-default.rules","link":"/usr/local/secureguardian/baseline/2.4.7.md"}
+,
+{"id":"2.4.8","description":"确保su命令继承用户环境变量不会引入提权","level": "要求","status":"失败","details":"检测失败: /etc/login.defs 中未正确配置 ALWAYS_SET_PATH。","link":"/usr/local/secureguardian/baseline/2.4.8.md"}
+,
+{"id":"2.4.9","description":"避免root用户本地接入系统","level": "建议","status":"失败","details":"检测失败: /etc/pam.d/system-auth 中未找到 pam_access.so 模块。","link":"/usr/local/secureguardian/baseline/2.4.9.md"}
+,
+{"id":"2.4.10","description":"避免使用标签为unconfined_service_t的程序","level": "建议","status":"成功","details":"检测成功: 系统中没有标签为unconfined_service_t的进程。","link":"/usr/local/secureguardian/baseline/2.4.10.md"}
+,
+{"id":"2.5.1","description":"应当启用IMA度量","level": "建议","status":"失败","details":"检测失败: 系统未启用IMA度量功能","link":"/usr/local/secureguardian/baseline/2.5.1.md"}
+,
+{"id":"2.5.2","description":"应当启用aide入侵检测","level": "建议","status":"失败","details":"检测失败: AIDE软件未安装","link":"/usr/local/secureguardian/baseline/2.5.2.md"}
+,
+{"id":"2.6.1","description":"应当启用haveged服务","level": "建议","status":"失败","details":"检测失败: haveged服务未启动或处于非活动状态。","link":"/usr/local/secureguardian/baseline/2.6.1.md"}
+,
+{"id":"2.6.2","description":"应当设置全局加解密策略配置不低于DEFAULT","level": "建议","status":"成功","details":"检查成功: 当前加解密策略为 DEFAULT，符合要求。","link":"/usr/local/secureguardian/baseline/2.6.2.md"}
+,
+{"id":"3.1.1","description":"避免使用不常见网络服务","level": "建议","status":"失败","details":"检测失败: 模块 sctp 未被禁用。详细输出：insmod /lib/modules/6.6.0-72.0.0.76.oe2403sp1.riscv64/kernel/net/ipv4/udp_tunnel.ko.xz <br><br>insmod /lib/modules/6.6.0-72.0.0.76.oe2403sp1.riscv64/kernel/net/ipv6/ip6_udp_tunnel.ko.xz <br><br>insmod /lib/modules/6.6.0-72.0.0.76.oe2403sp1.riscv64/kernel/net/sctp/sctp.ko.xz <br><br>检测失败: 模块 tipc 未被禁用。详细输出：insmod /lib/modules/6.6.0-72.0.0.76.oe2403sp1.riscv64/kernel/net/ipv4/udp_tunnel.ko.xz <br><br>insmod /lib/modules/6.6.0-72.0.0.76.oe2403sp1.riscv64/kernel/net/ipv6/ip6_udp_tunnel.ko.xz <br><br>insmod /lib/modules/6.6.0-72.0.0.76.oe2403sp1.riscv64/kernel/net/tipc/tipc.ko.xz ","link":"/usr/local/secureguardian/baseline/3.1.1.md"}
+,
+{"id":"3.1.2","description":"避免使用无线网络","level": "建议","status":"失败","details":"检测失败: 无线网络未完全禁用。","link":"/usr/local/secureguardian/baseline/3.1.2.md"}
+,
+{"id":"3.2.1","description":"应当启用firewalld服务","level": "建议","status":"成功","details":"iptables 服务状态为 inactive，符合预期。<br><br>firewalld 服务状态为 active，符合预期。<br><br>nftables 服务状态为 inactive，符合预期。<br><br>检查成功:所有检查通过。","link":"/usr/local/secureguardian/baseline/3.2.1.md"}
+,
+{"id":"3.2.2","description":"应当配置正确的默认区域","level": "建议","status":"成功","details":"检测成功: 默认区域配置正确，当前区域为：public。","link":"/usr/local/secureguardian/baseline/3.2.2.md"}
+,
+{"id":"3.2.3","description":"应当确保网络接口绑定正确区域","level": "建议","status":"失败","details":"no zone<br><br>检测失败: 接口 eth0 绑定到区域 <>，预期应为 public。<br><br>至少有一个接口的区域绑定检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.3.md"}
+,
+{"id":"3.2.4","description":"避免开启不必要的服务和端口","level": "建议","status":"成功","details":"所有指定区域的配置检查通过。","link":"/usr/local/secureguardian/baseline/3.2.4.md"}
+,
+{"id":"3.2.5","description":"应当启用iptables服务","level": "建议","status":"成功","details":"firewalld 服务正在运行或已正确执行任务。<br><br>iptables 服务未运行。<br><br>nftables 服务未运行。<br><br>检查通过：只有一个防火墙服务正在运行。","link":"/usr/local/secureguardian/baseline/3.2.5.md"}
+,
+{"id":"3.2.6","description":"应当正确配置iptables默认拒绝策略","level": "建议","status":"失败","details":"检测失败: OUTPUT 链的默认策略为 ACCEPT，与预期 DROP 状态不符。<br><br>检测失败: INPUT 链的默认策略为 ACCEPT，与预期 DROP 状态不符。<br><br>检测失败: FORWARD 链的默认策略为 ACCEPT，与预期 DROP 状态不符。<br><br>至少一个检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.6.md"}
+,
+{"id":"3.2.7","description":"应当正确配置iptables loopback策略","level": "建议","status":"失败","details":"检测失败: IPv4 策略配置不正确。<br><br>未正确配置 IPv4 的 ACCEPT 策略。<br><br>未正确配置 IPv4 的 DROP 策略。<br><br>检测失败: IPv6 策略配置不正确。<br><br>未正确配置 IPv6 的 ACCEPT 策略。<br><br>未正确配置 IPv6 的 DROP 策略。<br><br>至少一个检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.7.md"}
+,
+{"id":"3.2.8","description":"应当正确配置iptables INPUT策略","level": "建议","status":"失败","details":"检查 IPv4 策略:<br><br>IPv4 没有为端口 22 配置 tcp 接受规则。<br><br>IPv4 的 INPUT 默认策略不是 DROP。当前策略为 ACCEPT。<br><br>检查 IPv6 策略:<br><br>IPv6 没有为端口 22 配置 tcp 接受规则。<br><br>IPv6 的 INPUT 默认策略不是 DROP。当前策略为 ACCEPT。<br><br>检查失败:至少一个 IPv4 或 IPv6 的检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.8.md"}
+,
+{"id":"3.2.9","description":"应当正确配置iptables OUTPUT策略","level": "建议","status":"失败","details":"检查 IPv4 策略:<br><br>IPv4 没有为端口 22 配置 tcp 接受规则。<br><br>IPv4 的 OUTPUT 默认策略不是 DROP。当前策略为 ACCEPT。<br><br>检查 IPv6 策略:<br><br>IPv6 没有为端口 22 配置 tcp 接受规则。<br><br>IPv6 的 OUTPUT 默认策略不是 DROP。当前策略为 ACCEPT。<br><br>检查失败:至少一个 IPv4 或 IPv6 的检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.9.md"}
+,
+{"id":"3.2.10","description":"应当正确配置iptables INPUT、OUTPUT关联策略","level": "建议","status":"失败","details":"检查 IPv4 tcp INPUT...<br><br>检测失败: IPv4 INPUT 链中未找到任何符合 tcp 协议的规则。<br><br>检查 IPv6 tcp INPUT...<br><br>检测失败: IPv6 INPUT 链中未找到任何符合 tcp 协议的规则。<br><br>检查 IPv4 tcp OUTPUT...<br><br>检测失败: IPv4 OUTPUT 链中未找到任何符合 tcp 协议的规则。<br><br>检查 IPv6 tcp OUTPUT...<br><br>检测失败: IPv6 OUTPUT 链中未找到任何符合 tcp 协议的规则。<br><br>检查 IPv4 udp INPUT...<br><br>检测失败: IPv4 INPUT 链中未找到任何符合 udp 协议的规则。<br><br>检查 IPv6 udp INPUT...<br><br>检测失败: IPv6 INPUT 链中未找到任何符合 udp 协议的规则。<br><br>检查 IPv4 udp OUTPUT...<br><br>检测失败: IPv4 OUTPUT 链中未找到任何符合 udp 协议的规则。<br><br>检查 IPv6 udp OUTPUT...<br><br>检测失败: IPv6 OUTPUT 链中未找到任何符合 udp 协议的规则。<br><br>检查 IPv4 icmp INPUT...<br><br>检测失败: IPv4 INPUT 链中未找到任何符合 icmp 协议的规则。<br><br>检查 IPv6 icmp INPUT...<br><br>检测失败: IPv6 INPUT 链中未找到任何符合 icmp 协议的规则。<br><br>检查 IPv4 icmp OUTPUT...<br><br>检测失败: IPv4 OUTPUT 链中未找到任何符合 icmp 协议的规则。<br><br>检查 IPv6 icmp OUTPUT...<br><br>检测失败: IPv6 OUTPUT 链中未找到任何符合 icmp 协议的规则。<br><br>部分或全部规则检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.10.md"}
+,
+{"id":"3.2.12","description":"应当配置nftables默认拒绝策略","level": "建议","status":"失败","details":"检测失败: input 链未配置为默认 drop 策略。<br><br>检测失败: output 链未配置为默认 drop 策略。<br><br>检测失败: forward 链未配置为默认 drop 策略。<br><br>至少一个基础链的策略检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.12.md"}
+,
+{"id":"3.2.12","description":"应当配置nftables默认拒绝策略","level": "建议","status":"失败","details":"检测失败: input 链未配置为默认 drop 策略。<br><br>检测失败: output 链未配置为默认 drop 策略。<br><br>检测失败: forward 链未配置为默认 drop 策略。<br><br>至少一个基础链的策略检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.12.md"}
+,
+{"id":"3.2.13","description":"应当配置nftables loopback策略","level": "建议","status":"失败","details":"完整规则集: table inet firewalld {<br><br>	chain mangle_PREROUTING {<br><br>		type filter hook prerouting priority mangle + 10; policy accept;<br><br>		jump mangle_PREROUTING_ZONES<br><br>	}<br><br><br><br>	chain mangle_PREROUTING_POLICIES_pre {<br><br>		jump mangle_PRE_policy_allow-host-ipv6<br><br>	}<br><br><br><br>	chain mangle_PREROUTING_ZONES {<br><br>		iifname "enP2p197s0" goto mangle_PRE_public<br><br>		goto mangle_PRE_public<br><br>	}<br><br><br><br>	chain mangle_PREROUTING_POLICIES_post {<br><br>	}<br><br><br><br>	chain nat_PREROUTING {<br><br>		type nat hook prerouting priority dstnat + 10; policy accept;<br><br>		jump nat_PREROUTING_ZONES<br><br>	}<br><br><br><br>	chain nat_PREROUTING_POLICIES_pre {<br><br>		jump nat_PRE_policy_allow-host-ipv6<br><br>	}<br><br><br><br>	chain nat_PREROUTING_ZONES {<br><br>		iifname "enP2p197s0" goto nat_PRE_public<br><br>		goto nat_PRE_public<br><br>	}<br><br><br><br>	chain nat_PREROUTING_POLICIES_post {<br><br>	}<br><br><br><br>	chain nat_POSTROUTING {<br><br>		type nat hook postrouting priority srcnat + 10; policy accept;<br><br>		jump nat_POSTROUTING_ZONES<br><br>	}<br><br><br><br>	chain nat_POSTROUTING_POLICIES_pre {<br><br>	}<br><br><br><br>	chain nat_POSTROUTING_ZONES {<br><br>		oifname "enP2p197s0" goto nat_POST_public<br><br>		goto nat_POST_public<br><br>	}<br><br><br><br>	chain nat_POSTROUTING_POLICIES_post {<br><br>	}<br><br><br><br>	chain nat_OUTPUT {<br><br>		type nat hook output priority -90; policy accept;<br><br>		jump nat_OUTPUT_POLICIES_pre<br><br>		jump nat_OUTPUT_POLICIES_post<br><br>	}<br><br><br><br>	chain nat_OUTPUT_POLICIES_pre {<br><br>	}<br><br><br><br>	chain nat_OUTPUT_POLICIES_post {<br><br>	}<br><br><br><br>	chain filter_PREROUTING {<br><br>		type filter hook prerouting priority filter + 10; policy accept;<br><br>		icmpv6 type { nd-router-advert, nd-neighbor-solicit } accept<br><br>		meta nfproto ipv6 fib saddr . mark . iif oif missing drop<br><br>	}<br><br><br><br>	chain filter_INPUT {<br><br>		type filter hook input priority filter + 10; policy accept;<br><br>		ct state { established, related } accept<br><br>		ct status dnat accept<br><br>		iifname "lo" accept<br><br>		ct state invalid drop<br><br>		jump filter_INPUT_ZONES<br><br>		reject with icmpx admin-prohibited<br><br>	}<br><br><br><br>	chain filter_FORWARD {<br><br>		type filter hook forward priority filter + 10; policy accept;<br><br>		ct state { established, related } accept<br><br>		ct status dnat accept<br><br>		iifname "lo" accept<br><br>		ct state invalid drop<br><br>		ip6 daddr { ::/96, ::ffff:0.0.0.0/96, 2002::/24, 2002:a00::/24, 2002:7f00::/24, 2002:a9fe::/32, 2002:ac10::/28, 2002:c0a8::/32, 2002:e000::/19 } reject with icmpv6 addr-unreachable<br><br>		jump filter_FORWARD_ZONES<br><br>		reject with icmpx admin-prohibited<br><br>	}<br><br><br><br>	chain filter_OUTPUT {<br><br>		type filter hook output priority filter + 10; policy accept;<br><br>		ct state { established, related } accept<br><br>		oifname "lo" accept<br><br>		ip6 daddr { ::/96, ::ffff:0.0.0.0/96, 2002::/24, 2002:a00::/24, 2002:7f00::/24, 2002:a9fe::/32, 2002:ac10::/28, 2002:c0a8::/32, 2002:e000::/19 } reject with icmpv6 addr-unreachable<br><br>		jump filter_OUTPUT_POLICIES_pre<br><br>		jump filter_OUTPUT_POLICIES_post<br><br>	}<br><br><br><br>	chain filter_INPUT_POLICIES_pre {<br><br>		jump filter_IN_policy_allow-host-ipv6<br><br>	}<br><br><br><br>	chain filter_INPUT_ZONES {<br><br>		iifname "enP2p197s0" goto filter_IN_public<br><br>		goto filter_IN_public<br><br>	}<br><br><br><br>	chain filter_INPUT_POLICIES_post {<br><br>	}<br><br><br><br>	chain filter_FORWARD_POLICIES_pre {<br><br>	}<br><br><br><br>	chain filter_FORWARD_ZONES {<br><br>		iifname "enP2p197s0" goto filter_FWD_public<br><br>		goto filter_FWD_public<br><br>	}<br><br><br><br>	chain filter_FORWARD_POLICIES_post {<br><br>	}<br><br><br><br>	chain filter_OUTPUT_POLICIES_pre {<br><br>	}<br><br><br><br>	chain filter_OUTPUT_POLICIES_post {<br><br>	}<br><br><br><br>	chain filter_IN_public {<br><br>		jump filter_INPUT_POLICIES_pre<br><br>		jump filter_IN_public_pre<br><br>		jump filter_IN_public_log<br><br>		jump filter_IN_public_deny<br><br>		jump filter_IN_public_allow<br><br>		jump filter_IN_public_post<br><br>		jump filter_INPUT_POLICIES_post<br><br>		meta l4proto { icmp, ipv6-icmp } accept<br><br>		reject with icmpx admin-prohibited<br><br>	}<br><br><br><br>	chain filter_IN_public_pre {<br><br>	}<br><br><br><br>	chain filter_IN_public_log {<br><br>	}<br><br><br><br>	chain filter_IN_public_deny {<br><br>	}<br><br><br><br>	chain filter_IN_public_allow {<br><br>		tcp dport 22 ct state { new, untracked } accept<br><br>		ip daddr 224.0.0.251 udp dport 5353 ct state { new, untracked } accept<br><br>		ip6 daddr ff02::fb udp dport 5353 ct state { new, untracked } accept<br><br>		ip6 daddr fe80::/64 udp dport 546 ct state { new, untracked } accept<br><br>	}<br><br><br><br>	chain filter_IN_public_post {<br><br>	}<br><br><br><br>	chain nat_POST_public {<br><br>		jump nat_POSTROUTING_POLICIES_pre<br><br>		jump nat_POST_public_pre<br><br>		jump nat_POST_public_log<br><br>		jump nat_POST_public_deny<br><br>		jump nat_POST_public_allow<br><br>		jump nat_POST_public_post<br><br>		jump nat_POSTROUTING_POLICIES_post<br><br>	}<br><br><br><br>	chain nat_POST_public_pre {<br><br>	}<br><br><br><br>	chain nat_POST_public_log {<br><br>	}<br><br><br><br>	chain nat_POST_public_deny {<br><br>	}<br><br><br><br>	chain nat_POST_public_allow {<br><br>	}<br><br><br><br>	chain nat_POST_public_post {<br><br>	}<br><br><br><br>	chain filter_FWD_public {<br><br>		jump filter_FORWARD_POLICIES_pre<br><br>		jump filter_FWD_public_pre<br><br>		jump filter_FWD_public_log<br><br>		jump filter_FWD_public_deny<br><br>		jump filter_FWD_public_allow<br><br>		jump filter_FWD_public_post<br><br>		jump filter_FORWARD_POLICIES_post<br><br>		reject with icmpx admin-prohibited<br><br>	}<br><br><br><br>	chain filter_FWD_public_pre {<br><br>	}<br><br><br><br>	chain filter_FWD_public_log {<br><br>	}<br><br><br><br>	chain filter_FWD_public_deny {<br><br>	}<br><br><br><br>	chain filter_FWD_public_allow {<br><br>		oifname "enP2p197s0" accept<br><br>	}<br><br><br><br>	chain filter_FWD_public_post {<br><br>	}<br><br><br><br>	chain nat_PRE_public {<br><br>		jump nat_PREROUTING_POLICIES_pre<br><br>		jump nat_PRE_public_pre<br><br>		jump nat_PRE_public_log<br><br>		jump nat_PRE_public_deny<br><br>		jump nat_PRE_public_allow<br><br>		jump nat_PRE_public_post<br><br>		jump nat_PREROUTING_POLICIES_post<br><br>	}<br><br><br><br>	chain nat_PRE_public_pre {<br><br>	}<br><br><br><br>	chain nat_PRE_public_log {<br><br>	}<br><br><br><br>	chain nat_PRE_public_deny {<br><br>	}<br><br><br><br>	chain nat_PRE_public_allow {<br><br>	}<br><br><br><br>	chain nat_PRE_public_post {<br><br>	}<br><br><br><br>	chain mangle_PRE_public {<br><br>		jump mangle_PREROUTING_POLICIES_pre<br><br>		jump mangle_PRE_public_pre<br><br>		jump mangle_PRE_public_log<br><br>		jump mangle_PRE_public_deny<br><br>		jump mangle_PRE_public_allow<br><br>		jump mangle_PRE_public_post<br><br>		jump mangle_PREROUTING_POLICIES_post<br><br>	}<br><br><br><br>	chain mangle_PRE_public_pre {<br><br>	}<br><br><br><br>	chain mangle_PRE_public_log {<br><br>	}<br><br><br><br>	chain mangle_PRE_public_deny {<br><br>	}<br><br><br><br>	chain mangle_PRE_public_allow {<br><br>	}<br><br><br><br>	chain mangle_PRE_public_post {<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6 {<br><br>		jump filter_IN_policy_allow-host-ipv6_pre<br><br>		jump filter_IN_policy_allow-host-ipv6_log<br><br>		jump filter_IN_policy_allow-host-ipv6_deny<br><br>		jump filter_IN_policy_allow-host-ipv6_allow<br><br>		jump filter_IN_policy_allow-host-ipv6_post<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_pre {<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_log {<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_deny {<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_allow {<br><br>		icmpv6 type nd-neighbor-advert accept<br><br>		icmpv6 type nd-neighbor-solicit accept<br><br>		icmpv6 type nd-router-advert accept<br><br>		icmpv6 type nd-redirect accept<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_post {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6 {<br><br>		jump nat_PRE_policy_allow-host-ipv6_pre<br><br>		jump nat_PRE_policy_allow-host-ipv6_log<br><br>		jump nat_PRE_policy_allow-host-ipv6_deny<br><br>		jump nat_PRE_policy_allow-host-ipv6_allow<br><br>		jump nat_PRE_policy_allow-host-ipv6_post<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_pre {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_log {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_deny {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_allow {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_post {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6 {<br><br>		jump mangle_PRE_policy_allow-host-ipv6_pre<br><br>		jump mangle_PRE_policy_allow-host-ipv6_log<br><br>		jump mangle_PRE_policy_allow-host-ipv6_deny<br><br>		jump mangle_PRE_policy_allow-host-ipv6_allow<br><br>		jump mangle_PRE_policy_allow-host-ipv6_post<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_pre {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_log {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_deny {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_allow {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_post {<br><br>	}<br><br>}<br><br>检测失败: IPv4 loopback 策略配置不正确 - 未正确配置 'lo' 接口接收规则<br><br>检测失败: IPv4 loopback 策略配置不正确 - 未正确配置从非 'lo' 接口丢弃源地址为 127.0.0.0/8 的报文<br><br>检测失败: IPv4 loopback 策略配置不正确 - 未正确配置源地址为 127.0.0.0/8 的报文接受规则<br><br>完整规则集: table inet firewalld {<br><br>	chain mangle_PREROUTING {<br><br>		type filter hook prerouting priority mangle + 10; policy accept;<br><br>		jump mangle_PREROUTING_ZONES<br><br>	}<br><br><br><br>	chain mangle_PREROUTING_POLICIES_pre {<br><br>		jump mangle_PRE_policy_allow-host-ipv6<br><br>	}<br><br><br><br>	chain mangle_PREROUTING_ZONES {<br><br>		iifname "enP2p197s0" goto mangle_PRE_public<br><br>		goto mangle_PRE_public<br><br>	}<br><br><br><br>	chain mangle_PREROUTING_POLICIES_post {<br><br>	}<br><br><br><br>	chain nat_PREROUTING {<br><br>		type nat hook prerouting priority dstnat + 10; policy accept;<br><br>		jump nat_PREROUTING_ZONES<br><br>	}<br><br><br><br>	chain nat_PREROUTING_POLICIES_pre {<br><br>		jump nat_PRE_policy_allow-host-ipv6<br><br>	}<br><br><br><br>	chain nat_PREROUTING_ZONES {<br><br>		iifname "enP2p197s0" goto nat_PRE_public<br><br>		goto nat_PRE_public<br><br>	}<br><br><br><br>	chain nat_PREROUTING_POLICIES_post {<br><br>	}<br><br><br><br>	chain nat_POSTROUTING {<br><br>		type nat hook postrouting priority srcnat + 10; policy accept;<br><br>		jump nat_POSTROUTING_ZONES<br><br>	}<br><br><br><br>	chain nat_POSTROUTING_POLICIES_pre {<br><br>	}<br><br><br><br>	chain nat_POSTROUTING_ZONES {<br><br>		oifname "enP2p197s0" goto nat_POST_public<br><br>		goto nat_POST_public<br><br>	}<br><br><br><br>	chain nat_POSTROUTING_POLICIES_post {<br><br>	}<br><br><br><br>	chain nat_OUTPUT {<br><br>		type nat hook output priority -90; policy accept;<br><br>		jump nat_OUTPUT_POLICIES_pre<br><br>		jump nat_OUTPUT_POLICIES_post<br><br>	}<br><br><br><br>	chain nat_OUTPUT_POLICIES_pre {<br><br>	}<br><br><br><br>	chain nat_OUTPUT_POLICIES_post {<br><br>	}<br><br><br><br>	chain filter_PREROUTING {<br><br>		type filter hook prerouting priority filter + 10; policy accept;<br><br>		icmpv6 type { nd-router-advert, nd-neighbor-solicit } accept<br><br>		meta nfproto ipv6 fib saddr . mark . iif oif missing drop<br><br>	}<br><br><br><br>	chain filter_INPUT {<br><br>		type filter hook input priority filter + 10; policy accept;<br><br>		ct state { established, related } accept<br><br>		ct status dnat accept<br><br>		iifname "lo" accept<br><br>		ct state invalid drop<br><br>		jump filter_INPUT_ZONES<br><br>		reject with icmpx admin-prohibited<br><br>	}<br><br><br><br>	chain filter_FORWARD {<br><br>		type filter hook forward priority filter + 10; policy accept;<br><br>		ct state { established, related } accept<br><br>		ct status dnat accept<br><br>		iifname "lo" accept<br><br>		ct state invalid drop<br><br>		ip6 daddr { ::/96, ::ffff:0.0.0.0/96, 2002::/24, 2002:a00::/24, 2002:7f00::/24, 2002:a9fe::/32, 2002:ac10::/28, 2002:c0a8::/32, 2002:e000::/19 } reject with icmpv6 addr-unreachable<br><br>		jump filter_FORWARD_ZONES<br><br>		reject with icmpx admin-prohibited<br><br>	}<br><br><br><br>	chain filter_OUTPUT {<br><br>		type filter hook output priority filter + 10; policy accept;<br><br>		ct state { established, related } accept<br><br>		oifname "lo" accept<br><br>		ip6 daddr { ::/96, ::ffff:0.0.0.0/96, 2002::/24, 2002:a00::/24, 2002:7f00::/24, 2002:a9fe::/32, 2002:ac10::/28, 2002:c0a8::/32, 2002:e000::/19 } reject with icmpv6 addr-unreachable<br><br>		jump filter_OUTPUT_POLICIES_pre<br><br>		jump filter_OUTPUT_POLICIES_post<br><br>	}<br><br><br><br>	chain filter_INPUT_POLICIES_pre {<br><br>		jump filter_IN_policy_allow-host-ipv6<br><br>	}<br><br><br><br>	chain filter_INPUT_ZONES {<br><br>		iifname "enP2p197s0" goto filter_IN_public<br><br>		goto filter_IN_public<br><br>	}<br><br><br><br>	chain filter_INPUT_POLICIES_post {<br><br>	}<br><br><br><br>	chain filter_FORWARD_POLICIES_pre {<br><br>	}<br><br><br><br>	chain filter_FORWARD_ZONES {<br><br>		iifname "enP2p197s0" goto filter_FWD_public<br><br>		goto filter_FWD_public<br><br>	}<br><br><br><br>	chain filter_FORWARD_POLICIES_post {<br><br>	}<br><br><br><br>	chain filter_OUTPUT_POLICIES_pre {<br><br>	}<br><br><br><br>	chain filter_OUTPUT_POLICIES_post {<br><br>	}<br><br><br><br>	chain filter_IN_public {<br><br>		jump filter_INPUT_POLICIES_pre<br><br>		jump filter_IN_public_pre<br><br>		jump filter_IN_public_log<br><br>		jump filter_IN_public_deny<br><br>		jump filter_IN_public_allow<br><br>		jump filter_IN_public_post<br><br>		jump filter_INPUT_POLICIES_post<br><br>		meta l4proto { icmp, ipv6-icmp } accept<br><br>		reject with icmpx admin-prohibited<br><br>	}<br><br><br><br>	chain filter_IN_public_pre {<br><br>	}<br><br><br><br>	chain filter_IN_public_log {<br><br>	}<br><br><br><br>	chain filter_IN_public_deny {<br><br>	}<br><br><br><br>	chain filter_IN_public_allow {<br><br>		tcp dport 22 ct state { new, untracked } accept<br><br>		ip daddr 224.0.0.251 udp dport 5353 ct state { new, untracked } accept<br><br>		ip6 daddr ff02::fb udp dport 5353 ct state { new, untracked } accept<br><br>		ip6 daddr fe80::/64 udp dport 546 ct state { new, untracked } accept<br><br>	}<br><br><br><br>	chain filter_IN_public_post {<br><br>	}<br><br><br><br>	chain nat_POST_public {<br><br>		jump nat_POSTROUTING_POLICIES_pre<br><br>		jump nat_POST_public_pre<br><br>		jump nat_POST_public_log<br><br>		jump nat_POST_public_deny<br><br>		jump nat_POST_public_allow<br><br>		jump nat_POST_public_post<br><br>		jump nat_POSTROUTING_POLICIES_post<br><br>	}<br><br><br><br>	chain nat_POST_public_pre {<br><br>	}<br><br><br><br>	chain nat_POST_public_log {<br><br>	}<br><br><br><br>	chain nat_POST_public_deny {<br><br>	}<br><br><br><br>	chain nat_POST_public_allow {<br><br>	}<br><br><br><br>	chain nat_POST_public_post {<br><br>	}<br><br><br><br>	chain filter_FWD_public {<br><br>		jump filter_FORWARD_POLICIES_pre<br><br>		jump filter_FWD_public_pre<br><br>		jump filter_FWD_public_log<br><br>		jump filter_FWD_public_deny<br><br>		jump filter_FWD_public_allow<br><br>		jump filter_FWD_public_post<br><br>		jump filter_FORWARD_POLICIES_post<br><br>		reject with icmpx admin-prohibited<br><br>	}<br><br><br><br>	chain filter_FWD_public_pre {<br><br>	}<br><br><br><br>	chain filter_FWD_public_log {<br><br>	}<br><br><br><br>	chain filter_FWD_public_deny {<br><br>	}<br><br><br><br>	chain filter_FWD_public_allow {<br><br>		oifname "enP2p197s0" accept<br><br>	}<br><br><br><br>	chain filter_FWD_public_post {<br><br>	}<br><br><br><br>	chain nat_PRE_public {<br><br>		jump nat_PREROUTING_POLICIES_pre<br><br>		jump nat_PRE_public_pre<br><br>		jump nat_PRE_public_log<br><br>		jump nat_PRE_public_deny<br><br>		jump nat_PRE_public_allow<br><br>		jump nat_PRE_public_post<br><br>		jump nat_PREROUTING_POLICIES_post<br><br>	}<br><br><br><br>	chain nat_PRE_public_pre {<br><br>	}<br><br><br><br>	chain nat_PRE_public_log {<br><br>	}<br><br><br><br>	chain nat_PRE_public_deny {<br><br>	}<br><br><br><br>	chain nat_PRE_public_allow {<br><br>	}<br><br><br><br>	chain nat_PRE_public_post {<br><br>	}<br><br><br><br>	chain mangle_PRE_public {<br><br>		jump mangle_PREROUTING_POLICIES_pre<br><br>		jump mangle_PRE_public_pre<br><br>		jump mangle_PRE_public_log<br><br>		jump mangle_PRE_public_deny<br><br>		jump mangle_PRE_public_allow<br><br>		jump mangle_PRE_public_post<br><br>		jump mangle_PREROUTING_POLICIES_post<br><br>	}<br><br><br><br>	chain mangle_PRE_public_pre {<br><br>	}<br><br><br><br>	chain mangle_PRE_public_log {<br><br>	}<br><br><br><br>	chain mangle_PRE_public_deny {<br><br>	}<br><br><br><br>	chain mangle_PRE_public_allow {<br><br>	}<br><br><br><br>	chain mangle_PRE_public_post {<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6 {<br><br>		jump filter_IN_policy_allow-host-ipv6_pre<br><br>		jump filter_IN_policy_allow-host-ipv6_log<br><br>		jump filter_IN_policy_allow-host-ipv6_deny<br><br>		jump filter_IN_policy_allow-host-ipv6_allow<br><br>		jump filter_IN_policy_allow-host-ipv6_post<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_pre {<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_log {<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_deny {<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_allow {<br><br>		icmpv6 type nd-neighbor-advert accept<br><br>		icmpv6 type nd-neighbor-solicit accept<br><br>		icmpv6 type nd-router-advert accept<br><br>		icmpv6 type nd-redirect accept<br><br>	}<br><br><br><br>	chain filter_IN_policy_allow-host-ipv6_post {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6 {<br><br>		jump nat_PRE_policy_allow-host-ipv6_pre<br><br>		jump nat_PRE_policy_allow-host-ipv6_log<br><br>		jump nat_PRE_policy_allow-host-ipv6_deny<br><br>		jump nat_PRE_policy_allow-host-ipv6_allow<br><br>		jump nat_PRE_policy_allow-host-ipv6_post<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_pre {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_log {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_deny {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_allow {<br><br>	}<br><br><br><br>	chain nat_PRE_policy_allow-host-ipv6_post {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6 {<br><br>		jump mangle_PRE_policy_allow-host-ipv6_pre<br><br>		jump mangle_PRE_policy_allow-host-ipv6_log<br><br>		jump mangle_PRE_policy_allow-host-ipv6_deny<br><br>		jump mangle_PRE_policy_allow-host-ipv6_allow<br><br>		jump mangle_PRE_policy_allow-host-ipv6_post<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_pre {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_log {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_deny {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_allow {<br><br>	}<br><br><br><br>	chain mangle_PRE_policy_allow-host-ipv6_post {<br><br>	}<br><br>}<br><br>检测失败: IPv6 loopback 策略配置不正确 - 未正确配置 'lo' 接口接收规则<br><br>检测失败: IPv6 loopback 策略配置不正确 - 未正确配置从非 'lo' 接口丢弃源地址为 ::1 的报文<br><br>检测失败: IPv6 loopback 策略配置不正确 - 未正确配置源地址为 ::1 的报文接受规则<br><br>检查失败:至少一个 loopback 策略检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.13.md"}
+,
+{"id":"3.2.14","description":"应当正确配置nftables input策略","level": "建议","status":"失败","details":"检测失败: 端口 22 未在 tcp 协议上配置为 ACCEPT。<br><br>检查失败:至少一个指定端口或协议的检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.14.md"}
+,
+{"id":"3.2.15","description":"应当正确配置nftables output策略","level": "建议","status":"失败","details":"检测失败: 在output链中，协议 tcp 的源端口 22 未配置为 ACCEPT。<br><br>检查失败:至少一个指定的端口或协议的output链配置检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.15.md"}
+,
+{"id":"3.2.16","description":"应当正确配置nftables input、output关联策略","level": "建议","status":"失败","details":"检测失败: 协议 tcp 的input或output链未正确配置关联状态策略。<br><br>检测失败: 协议 udp 的input或output链未正确配置关联状态策略。<br><br>检测失败: 协议 icmp 的input或output链未正确配置关联状态策略。<br><br>检测失败:至少一个指定协议的链关联状态策略检查未通过。","link":"/usr/local/secureguardian/baseline/3.2.16.md"}
+,
+{"id":"3.3.1","description":"确保SSH服务版本配置正确","level": "要求","status":"成功","details":"SSH协议版本配置正确: 2","link":"/usr/local/secureguardian/baseline/3.3.1.md"}
+,
+{"id":"3.3.2","description":"确保SSH服务认证方式配置正确","level": "要求","status":"成功","details":"检测成功: 所有必要的认证方式至少有一个已被启用，且其他配置正确。","link":"/usr/local/secureguardian/baseline/3.3.2.md"}
+,
+{"id":"3.3.3","description":"确保SSH密钥交换算法配置正确","level": "要求","status":"成功","details":"检查成功:KexAlgorithms 配置正确","link":"/usr/local/secureguardian/baseline/3.3.3.md"}
+,
+{"id":"3.3.4","description":"确保用户认证密钥算法配置正确","level": "要求","status":"成功","details":"检测成功:PubkeyAcceptedKeyTypes 配置正确","link":"/usr/local/secureguardian/baseline/3.3.4.md"}
+,
+{"id":"3.3.5","description":"确保PAM认证使能","level": "要求","status":"成功","details":"检查成功:PAM认证配置正确，已启用。","link":"/usr/local/secureguardian/baseline/3.3.5.md"}
+,
+{"id":"3.3.6","description":"确保SSH服务MACs算法配置正确","level": "要求","status":"成功","details":"检测成功:MACs 配置正确。当前设置: hmac-sha2-256,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-512-etm@openssh.com","link":"/usr/local/secureguardian/baseline/3.3.6.md"}
+,
+{"id":"3.3.7","description":"确保SSH服务密码算法配置正确","level": "要求","status":"成功","details":"检测成功:Ciphers 配置正确。当前设置: aes128-ctr,aes128-gcm@openssh.com,aes192-ctr,aes256-ctr,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com","link":"/usr/local/secureguardian/baseline/3.3.7.md"}
+,
+{"id":"3.3.8","description":"禁止SSH服务配置加密算法覆盖策略","level": "要求","status":"成功","details":"检测成功: 加密算法覆盖策略未配置。","link":"/usr/local/secureguardian/baseline/3.3.8.md"}
+,
+{"id":"3.3.9","description":"确保禁用root用户通过SSH登录","level": "要求","status":"失败","details":"检测失败: PermitRootLogin 未设置为 'no'。当前配置允许root登录。<br><br>检查失败:配置文件中 PermitRootLogin 设置为 yes。<br><br>检查未通过，存在配置错误。","link":"/usr/local/secureguardian/baseline/3.3.9.md"}
+,
+{"id":"3.3.10","description":"应当正确配置SSH服务日志级别","level": "建议","status":"成功","details":"检测成功: 日志级别设置正确，当前配置为: verbose","link":"/usr/local/secureguardian/baseline/3.3.10.md"}
+,
+{"id":"3.3.11","description":"应当正确配置SSH服务接口","level": "建议","status":"失败","details":"检测失败: 未配置任何ListenAddress。","link":"/usr/local/secureguardian/baseline/3.3.11.md"}
+,
+{"id":"3.3.12","description":"应当正确配置SSH并发未认证连接数","level": "建议","status":"失败","details":"检测失败: MaxStartups 未在 /etc/ssh/sshd_config 中配置。","link":"/usr/local/secureguardian/baseline/3.3.12.md"}
+,
+{"id":"3.3.13","description":"应当正确配置单个SSH连接允许的并发会话数","level": "建议","status":"失败","details":"检测失败: 'MaxSessions' 未在 /etc/ssh/sshd_config 中配置。","link":"/usr/local/secureguardian/baseline/3.3.13.md"}
+,
+{"id":"3.3.14","description":"禁止使用X11 Forwarding","level": "要求","status":"成功","details":"检测通过: X11Forwarding 已正确禁用。","link":"/usr/local/secureguardian/baseline/3.3.14.md"}
+,
+{"id":"3.3.15","description":"应当正确配置MaxAuthTries","level": "建议","status":"失败","details":"检测失败:警告: MaxAuthTries 未配置，当前系统默认值为6。","link":"/usr/local/secureguardian/baseline/3.3.15.md"}
+,
+{"id":"3.3.16","description":"禁止使用PermitUserEnvironment","level": "要求","status":"成功","details":"检查通过: PermitUserEnvironment 已正确设置为 'no'.","link":"/usr/local/secureguardian/baseline/3.3.16.md"}
+,
+{"id":"3.3.17","description":"应当正确配置LoginGraceTime","level": "建议","status":"失败","details":"检测失败: LoginGraceTime 未配置。","link":"/usr/local/secureguardian/baseline/3.3.17.md"}
+,
+{"id":"3.3.18","description":"禁止SSH服务预设置authorized_keys","level": "要求","status":"成功","details":"未检测到未授权的 authorized_keys 文件。","link":"/usr/local/secureguardian/baseline/3.3.18.md"}
+,
+{"id":"3.3.19","description":"禁止SSH服务预设置known_hosts","level": "要求","status":"成功","details":"检测成功:未检测到预设置的 known_hosts 文件。","link":"/usr/local/secureguardian/baseline/3.3.19.md"}
+,
+{"id":"3.3.20","description":"禁止SSH服务配置弃用的选项","level": "要求","status":"成功","details":"检查通过: 未发现弃用的配置选项","link":"/usr/local/secureguardian/baseline/3.3.20.md"}
+,
+{"id":"3.3.21","description":"确保禁用SSH的TCP转发功能","level": "要求","status":"成功","details":"检查通过: TCP转发已禁用。","link":"/usr/local/secureguardian/baseline/3.3.21.md"}
+,
+{"id":"3.3.22","description":"应当正确配置认证黑白名单","level": "建议","status":"失败","details":"未找到 AllowUsers 配置。<br><br>未找到 AllowGroups 配置。<br><br>未找到 DenyUsers 配置。<br><br>未找到 DenyGroups 配置。<br><br>检查未通过，没有找到任何配置项。","link":"/usr/local/secureguardian/baseline/3.3.22.md"}
+,
+{"id":"3.4.1","description":"确保crontab执行的脚本非属主用户不可写","level": "要求","status":"成功","details":"未发现任何可执行路径配置。","link":"/usr/local/secureguardian/baseline/3.4.1.md"}
+,
+{"id":"3.4.2","description":"确保 cron 守护进程正常启用","level": "要求","status":"成功","details":"检查成功:crond 服务已正确启用并运行。","link":"/usr/local/secureguardian/baseline/3.4.2.md"}
+,
+{"id":"3.4.3","description":"确保at、cron配置正确","level": "要求","status":"成功","details":"检查成功:所有检查通过。","link":"/usr/local/secureguardian/baseline/3.4.3.md"}
+,
+{"id":"3.5.1","description":"确保内核ASLR已启用","level": "要求","status":"成功","details":"ASLR设置正确，当前值为2。","link":"/usr/local/secureguardian/baseline/3.5.1.md"}
+,
+{"id":"3.5.2","description":"确保dmesg访问权限配置正确","level": "要求","status":"成功","details":"dmesg访问权限配置正确。","link":"/usr/local/secureguardian/baseline/3.5.2.md"}
+,
+{"id":"3.5.3","description":"确保正确配置内核参数kptr_restrict","level": "要求","status":"失败","details":"检测失败: kptr_restrict 当前值为 0，应设置为 1。","link":"/usr/local/secureguardian/baseline/3.5.3.md"}
+,
+{"id":"3.5.4","description":"确保内核SMAP已启用","level": "要求","status":"成功","details":"CPU不支持SMAP特性。","link":"/usr/local/secureguardian/baseline/3.5.4.md"}
+,
+{"id":"3.5.5","description":"确保内核SMEP已启用","level": "要求","status":"成功","details":"检测忽略: 当前CPU不支持SMEP。","link":"/usr/local/secureguardian/baseline/3.5.5.md"}
+,
+{"id":"3.5.6","description":"禁止系统响应ICMP广播报文","level": "要求","status":"成功","details":"检测成功: 系统已禁止响应ICMP广播报文。","link":"/usr/local/secureguardian/baseline/3.5.6.md"}
+,
+{"id":"3.5.7","description":"禁止接收ICMP重定向报文","level": "要求","status":"成功","details":"检测成功: 系统已正确配置不接收任何ICMP重定向报文。","link":"/usr/local/secureguardian/baseline/3.5.7.md"}
+,
+{"id":"3.5.8","description":"禁止转发ICMP重定向报文","level": "要求","status":"成功","details":"检测成功: 系统已正确配置为不转发ICMP重定向报文。","link":"/usr/local/secureguardian/baseline/3.5.8.md"}
+,
+{"id":"3.5.9","description":"应当忽略所有ICMP请求","level": "建议","status":"失败","details":"检测失败: 系统未配置为忽略所有ICMP请求。","link":"/usr/local/secureguardian/baseline/3.5.9.md"}
+,
+{"id":"3.5.10","description":"确保丢弃伪造的ICMP报文，不记录日志","level": "要求","status":"成功","details":"检测成功: 系统已设置为忽略伪造的ICMP错误响应。","link":"/usr/local/secureguardian/baseline/3.5.10.md"}
+,
+{"id":"3.5.11","description":"确保反向地址过滤已启用","level": "要求","status":"成功","details":"检测成功: 所有接口和默认接口的反向地址过滤已启用。","link":"/usr/local/secureguardian/baseline/3.5.11.md"}
+,
+{"id":"3.5.12","description":"禁止IP转发","level": "要求","status":"成功","details":"检测成功: 系统已正确设置以禁止IPv4和IPv6转发。","link":"/usr/local/secureguardian/baseline/3.5.12.md"}
+,
+{"id":"3.5.13","description":"禁止报文源路由","level": "要求","status":"成功","details":"检测成功: 所有IPv4和IPv6源路由设置已被禁用。","link":"/usr/local/secureguardian/baseline/3.5.13.md"}
+,
+{"id":"3.5.14","description":"确保TCP-SYN cookie保护已启用","level": "要求","status":"成功","details":"检测成功: TCP-SYN cookie保护已启用。","link":"/usr/local/secureguardian/baseline/3.5.14.md"}
+,
+{"id":"3.5.15","description":"应当记录仿冒、源路由以及重定向报文日志","level": "要求","status":"失败","details":"检测失败: 日志记录未完全启用。<br><br>当前设置：net.ipv4.conf.all.log_martians=0, net.ipv4.conf.default.log_martians=0","link":"/usr/local/secureguardian/baseline/3.5.15.md"}
+,
+{"id":"3.5.16","description":"避免开启tcp_timestamps","level": "要求","status":"失败","details":"检测失败: tcp_timestamps未被禁用。当前设置值为：1","link":"/usr/local/secureguardian/baseline/3.5.16.md"}
+,
+{"id":"3.5.17","description":"确保TIME_WAIT TCP协议等待时间已配置","level": "要求","status":"成功","details":"检测成功: tcp_fin_timeout设置正确，当前值为：60。","link":"/usr/local/secureguardian/baseline/3.5.17.md"}
+,
+{"id":"3.5.18","description":"应当正确配置SYN_RECV状态队列数量","level": "要求","status":"失败","details":"检测失败: tcp_max_syn_backlog未设置为推荐值，当前值为：4096，建议设置为256。","link":"/usr/local/secureguardian/baseline/3.5.18.md"}
+,
+{"id":"3.5.19","description":"禁止使用ARP代理","level": "要求","status":"成功","details":"检测成功: ARP代理设置已被正确配置。","link":"/usr/local/secureguardian/baseline/3.5.19.md"}
+,
+{"id":"3.5.20","description":"确保core dump配置正确","level": "要求","status":"成功","details":"核心转储已禁用，配置正确。","link":"/usr/local/secureguardian/baseline/3.5.20.md"}
+,
+{"id":"3.5.21","description":"禁止使用SysRq键","level": "要求","status":"成功","details":"当前SysRq设置值: 0<br><br>检测成功: SysRq 键的配置符合期望值。","link":"/usr/local/secureguardian/baseline/3.5.21.md"}
+,
+{"id":"3.5.22","description":"应当正确配置内核参数ptrace_scope","level": "建议","status":"失败","details":"检测失败: ptrace_scope 的配置不符合期望值。当前值为 0，期望值为 2。","link":"/usr/local/secureguardian/baseline/3.5.22.md"}
+,
+{"id":"3.5.23","description":"应当启用seccomp","level": "建议","status":"成功","details":"检测成功: 未提供足够参数，默认不检查。","link":"/usr/local/secureguardian/baseline/3.5.23.md"}
+,
+{"id":"3.6.1","description":"应当正确配置ntpd服务","level": "建议","status":"失败","details":"Unit ntpd.service could not be found.<br><br>检测失败: ntpd服务未启动或不处于活动状态。","link":"/usr/local/secureguardian/baseline/3.6.1.md"}
+,
+{"id":"3.6.2","description":"应当正确配置chronyd服务","level": "建议","status":"成功","details":"所有检查通过: chronyd服务配置正确。","link":"/usr/local/secureguardian/baseline/3.6.2.md"}
+,
+{"id":"4.1.1","description":"确保auditd审计已启用","level": "要求","status":"成功","details":"检测成功: auditd 服务已启用并正在运行。","link":"/usr/local/secureguardian/baseline/4.1.1.md"}
+,
+{"id":"4.1.2","description":"确保审计日志rotate已启用","level": "要求","status":"成功","details":"检测成功: 审计日志轮转已正确配置。","link":"/usr/local/secureguardian/baseline/4.1.2.md"}
+,
+{"id":"4.1.3","description":"应当配置登录审计规则","level": "建议","status":"失败","details":"检测失败: /var/log/lastlog 未设置审计规则。","link":"/usr/local/secureguardian/baseline/4.1.3.md"}
+,
+{"id":"4.1.4","description":"应当配置账号信息修改审计规则","level": "建议","status":"失败","details":"grep: warning: stray \ before -<br><br>检测失败: 审计规则未正确配置或未配置用于监控文件 /etc/passwd 的规则。<br><br>grep: warning: stray \ before -<br><br>检测失败: 审计规则未正确配置或未配置用于监控文件 /etc/group 的规则。<br><br>grep: warning: stray \ before -<br><br>检测失败: 审计规则未正确配置或未配置用于监控文件 /etc/shadow 的规则。<br><br>grep: warning: stray \ before -<br><br>检测失败: 审计规则未正确配置或未配置用于监控文件 /etc/gshadow 的规则。<br><br>grep: warning: stray \ before -<br><br>检测失败: 审计规则未正确配置或未配置用于监控文件 /etc/security/opasswd 的规则。<br><br>部分或全部关键文件审计规则检查未通过，请检查并配置正确的审计规则。","link":"/usr/local/secureguardian/baseline/4.1.4.md"}
+,
+{"id":"4.1.5","description":"应当配置提权命令审计规则","level": "建议","status":"失败","details":"/usr/bin/pkexec not set<br><br>/usr/bin/su not set<br><br>/usr/bin/locate not set<br><br>/usr/bin/gpasswd not set<br><br>/usr/bin/wall not set<br><br>/usr/bin/crontab not set<br><br>/usr/bin/chage not set<br><br>/usr/bin/umount not set<br><br>/usr/bin/at not set<br><br>/usr/bin/chfn not set<br><br>/usr/bin/newuidmap not set<br><br>/usr/bin/mount not set<br><br>/usr/bin/write not set<br><br>/usr/bin/passwd not set<br><br>/usr/bin/sudo not set<br><br>/usr/bin/newgrp not set<br><br>/usr/bin/newgidmap not set<br><br>/usr/bin/fusermount not set<br><br>/usr/bin/staprun not set<br><br>/usr/bin/chsh not set<br><br>/usr/libexec/dbus-1/dbus-daemon-launch-helper not set<br><br>/usr/libexec/utempter/utempter not set<br><br>/usr/libexec/openssh/ssh-keysign not set<br><br>/usr/sbin/unix_chkpwd not set<br><br>/usr/sbin/mount.nfs not set<br><br>/usr/sbin/mtr-packet not set<br><br>/usr/sbin/pam_timestamp_check not set<br><br>/usr/lib/polkit-1/polkit-agent-helper-1 not set<br><br>一些提权命令缺少审计规则。请根据安全政策配置审计。","link":"/usr/local/secureguardian/baseline/4.1.5.md"}
+,
+{"id":"4.1.6","description":"应当配置内核模块变更审计规则","level": "建议","status":"失败","details":"检测失败: 审计规则未正确配置或未配置用于监控命令 /sbin/insmod 的规则。<br><br>检测失败: 审计规则未正确配置或未配置用于监控命令 /sbin/rmmod 的规则。<br><br>检测失败: 审计规则未正确配置或未配置用于监控命令 /sbin/modprobe 的规则。<br><br>检测失败: 审计规则未正确配置或未配置用于监控系统调用 init_module 的规则。<br><br>检测失败: 审计规则未正确配置或未配置用于监控系统调用 delete_module 的规则。<br><br>部分或全部内核模块变更审计规则检查未通过，请检查并配置正确的审计规则。","link":"/usr/local/secureguardian/baseline/4.1.6.md"}
+,
+{"id":"4.1.7","description":"应当配置管理员特权操作审计规则","level": "建议","status":"失败","details":"检测失败: 未配置用于监控文件 '/var/log/sudo.log' 的审计规则。<br><br>管理员特权操作审计规则检查未通过，请检查并配置正确的审计规则。","link":"/usr/local/secureguardian/baseline/4.1.7.md"}
+,
+{"id":"4.1.8","description":"应当在启动阶段启用auditd","level": "建议","status":"成功","details":"检测成功: 审计系统当前处于启用状态。","link":"/usr/local/secureguardian/baseline/4.1.8.md"}
+,
+{"id":"4.1.9","description":"应当正确配置audit_backlog_limit","level": "建议","status":"失败","details":"检测失败: audit_backlog_limit未正确配置为8192或更高。","link":"/usr/local/secureguardian/baseline/4.1.9.md"}
+,
+{"id":"4.1.10","description":"避免使用auditctl设置Auditd规则","level": "建议","status":"失败","details":"检测失败: 在任何.rules文件中未找到 '-e 2' 设置。","link":"/usr/local/secureguardian/baseline/4.1.10.md"}
+,
+{"id":"4.1.11","description":"确保日志大小限制配置正确","level": "要求","status":"成功","details":"检测成功: max_log_file 当前设置为 8MB，与期望值 8MB 一致。","link":"/usr/local/secureguardian/baseline/4.1.11.md"}
+,
+{"id":"4.1.12","description":"应当正确配置硬盘空间阈值","level": "建议","status":"成功","details":"检查成功:所有配置项检查通过。","link":"/usr/local/secureguardian/baseline/4.1.12.md"}
+,
+{"id":"4.1.13","description":"应当配置sudoers审计规则","level": "建议","status":"失败","details":"检测失败: 未对 /etc/sudoers 文件配置审计规则。","link":"/usr/local/secureguardian/baseline/4.1.13.md"}
+,
+{"id":"4.1.14","description":"应当配置会话审计规则","level": "建议","status":"失败","details":"检测失败: /var/run/utmp 文件未配置任何审计规则。<br><br>检测失败: /var/log/wtmp 文件未配置任何审计规则。<br><br>检测失败: /var/log/btmp 文件未配置任何审计规则。","link":"/usr/local/secureguardian/baseline/4.1.14.md"}
+,
+{"id":"4.1.15","description":"应当配置时间修改审计规则","level": "建议","status":"失败","details":"检测失败: 未配置 b64 架构下 settimeofday 的系统调用审计规则。<br><br>检测失败: 未配置 b64 架构下 adjtimex 的系统调用审计规则。<br><br>检测失败: 未配置 b64 架构下 clock_settime 的系统调用审计规则。<br><br>检测失败: 未配置 /etc/localtime 文件的审计规则。","link":"/usr/local/secureguardian/baseline/4.1.15.md"}
+,
+{"id":"4.1.16","description":"应当配置SELinux审计规则","level": "建议","status":"失败","details":"检测失败: /etc/selinux 目录未配置审计规则。<br><br>检测失败: /usr/share/selinux 目录未配置审计规则。","link":"/usr/local/secureguardian/baseline/4.1.16.md"}
+,
+{"id":"4.1.17","description":"应当配置网络环境审计规则","level": "建议","status":"失败","details":"检测失败: 未配置 b64 架构下 sethostname 的系统调用审计规则。<br><br>检测失败: 未配置 b64 架构下 setdomainname 的系统调用审计规则。<br><br>检测失败: 文件 /etc/hosts 的审计规则未配置。<br><br>检测失败: 文件 /etc/issue 的审计规则未配置。<br><br>检测失败: 文件 /etc/issue.net 的审计规则未配置。","link":"/usr/local/secureguardian/baseline/4.1.17.md"}
+,
+{"id":"4.1.18","description":"应当配置文件访问控制权限审计规则","level": "建议","status":"失败","details":"检测失败: b64 架构下系统调用 chmod 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 fchmod 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 fchmodat 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 chown 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 fchown 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 lchown 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 fchownat 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 setxattr 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 lsetxattr 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 fsetxattr 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 removexattr 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 lremovexattr 的审计规则未配置。<br><br>检测失败: b64 架构下系统调用 fremovexattr 的审计规则未配置。","link":"/usr/local/secureguardian/baseline/4.1.18.md"}
+,
+{"id":"4.1.19","description":"应当配置文件访问失败审计规则","level": "建议","status":"失败","details":"检测失败: 在b64架构下，系统调用 open 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 truncate 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 ftruncate 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 creat 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 openat 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 open 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 truncate 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 ftruncate 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 creat 相关的审计规则未配置。<br><br>检测失败: 在b64架构下，系统调用 openat 相关的审计规则未配置。<br><br>存在配置错误，请检查审计规则。","link":"/usr/local/secureguardian/baseline/4.1.19.md"}
+,
+{"id":"4.1.20","description":"应当配置文件删除审计规则","level": "建议","status":"失败","details":"检测失败: 在 b64 架构下，系统调用 rename 的审计规则未配置。<br><br>检测失败: 在 b64 架构下，系统调用 unlink 的审计规则未配置。<br><br>检测失败: 在 b64 架构下，系统调用 unlinkat 的审计规则未配置。<br><br>检测失败: 在 b64 架构下，系统调用 renameat 的审计规则未配置。","link":"/usr/local/secureguardian/baseline/4.1.20.md"}
+,
+{"id":"4.1.21","description":"应当配置文件系统挂载审计规则","level": "建议","status":"失败","details":"检测失败: 在b64架构下，系统调用 mount 相关的审计规则未配置。","link":"/usr/local/secureguardian/baseline/4.1.21.md"}
+,
+{"id":"4.2.1","description":"确保rsyslog服务已启用","level": "要求","status":"成功","details":"检查通过: rsyslog服务已启用并正在运行。","link":"/usr/local/secureguardian/baseline/4.2.1.md"}
+,
+{"id":"4.2.2","description":"确保系统认证相关事件日志已记录","level": "要求","status":"成功","details":"检查通过: 系统认证相关日志已配置。","link":"/usr/local/secureguardian/baseline/4.2.2.md"}
+,
+{"id":"4.2.3","description":"确保cron服务日志已记录","level": "要求","status":"成功","details":"检查通过: cron服务日志已正确配置。","link":"/usr/local/secureguardian/baseline/4.2.3.md"}
+,
+{"id":"4.2.4","description":"应当正确配置rsyslog默认文件权限","level": "建议","status":"失败","details":"检测失败: 在配置文件中未找到任何FileCreateMode设置。","link":"/usr/local/secureguardian/baseline/4.2.4.md"}
+,
+{"id":"4.2.5","description":"应当正确配置各服务日志记录","level": "建议","status":"成功","details":"Usage: /usr/local/secureguardian/scripts/checks/4/4.2/4.2.5.sh -s <service_name> -l <logfile_path><br><br>Example: /usr/local/secureguardian/scripts/checks/4/4.2/4.2.5.sh -s cron -l /var/log/cron<br><br>未提供参数，忽略检查。","link":"/usr/local/secureguardian/baseline/4.2.5.md"}
+,
+{"id":"4.2.6","description":"确保rsyslog转储journald日志已配置","level": "要求","status":"失败","details":"检测失败: imjournal 模块未在 /etc/rsyslog.conf 中正确配置或状态文件 imjournal.state 不匹配。","link":"/usr/local/secureguardian/baseline/4.2.6.md"}
+,
+{"id":"4.2.7","description":"确保Rsyslog日志rotate已配置","level": "要求","status":"失败","details":"检测失败: 以下 rotate 设置未在 /etc/logrotate.d/rsyslog 中正确配置：<br><br>  - compress 未配置<br><br>  - size 设置应为 4096k","link":"/usr/local/secureguardian/baseline/4.2.7.md"}
+,
+{"id":"4.2.8","description":"应当配置远程日志服务器","level": "建议","status":"失败","details":"检测失败: 配置文件中未配置远程日志服务器。","link":"/usr/local/secureguardian/baseline/4.2.8.md"}
+,
+{"id":"4.2.9","description":"应当仅在指定的日志主机上接受远程rsyslog消息","level": "建议","status":"失败","details":"grep: /etc/rsyslog.d/*.conf: No such file or directory<br><br>grep: /etc/rsyslog.d/*.conf: No such file or directory<br><br>grep: /etc/rsyslog.d/*.conf: No such file or directory<br><br>grep: /etc/rsyslog.d/*.conf: No such file or directory<br><br>检测失败: 未在配置文件中配置TCP或UDP模块加载。","link":"/usr/local/secureguardian/baseline/4.2.9.md"}
+]

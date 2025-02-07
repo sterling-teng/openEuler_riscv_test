@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>检查报告</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9; /* 浅灰色背景 */
+            color: #333;
+        }
+        header {
+            background-color: #4a90e2; /* 蓝色 */
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: left; /* 左对齐 */
+        }
+        h1 {
+            margin: 0;
+            padding-bottom: 10px;
+        }
+        p {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            table-layout: fixed;
+            background-color: #ffffff; /* 表格白色背景 */
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #4a90e2; /* 蓝色 */
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .status {
+            width: 80px; /* 设置"状态"列的宽度 */
+        }
+        .id, .level {
+            width: 50px; /* 设置"ID"和"级别"列的宽度 */
+        }
+        .success {
+            background-color: #d4edda; /* 成功的背景颜色 */
+            color: #155724; /* 成功的文字颜色 */
+        }
+        .fail {
+            background-color: #f8d7da; /* 失败的背景颜色 */
+            color: #721c24; /* 失败的文字颜色 */
+        }
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            margin-bottom: 20px;
+            justify-content: flex-start; /* 左对齐 */
+            border-bottom: 2px solid #ccc;
+        }
+        .subtabs {
+            display: flex;
+            cursor: pointer;
+            margin-bottom: 20px;
+            justify-content: flex-start; /* 左对齐 */
+            border-bottom: 1px solid #ccc;
+        }
+        .tabcontent {
+            display: none;
+        }
+        .subtabcontent {
+            display: none;
+        }
+        .tablinks, .subtablinks {
+            padding: 14px 20px;
+            background-color: #e1e8f0; /* 浅蓝灰色 */
+            border: 1px solid #ccc;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .tablinks.active, .tablinks:hover, .subtablinks.active, .subtablinks:hover {
+            background-color: #4a90e2; /* 蓝色 */
+            color: white;
+        }
+        .tabcontent.active, .subtabcontent.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>检查报告</h1>
+        <p>报告生成时间：2025-02-07 23:13:22</p>
+        <p>总检查项数：，成功：，失败：</p>
+        <p>要求 - 总检查项数：，成功：，失败：</p>
+        <p>建议 - 总检查项数：，成功：，失败：</p>
+        <p>本报告提供了系统安全检查的详细结果，包括每项检查的状态和相关的详细信息。</p>
+    </header>
+    <div class="tabs">
+        <button class="tablinks" onclick="openTab(event, '初始部署')">初始部署</button>
+        <button class="tablinks" onclick="openTab(event, '安全访问')">安全访问</button>
+        <button class="tablinks" onclick="openTab(event, '运行和服务')">运行和服务</button>
+        <button class="tablinks" onclick="openTab(event, '日志审计')">日志审计</button>
+    </div>
+<div id="运行和服务" class="tabcontent">
+<div class="subtabs">
+<button class="subtablinks" onclick="openSubTab(event, '运行和服务_网络')">网络</button>
+<button class="subtablinks" onclick="openSubTab(event, '运行和服务_防火墙')">防火墙</button>
+<button class="subtablinks" onclick="openSubTab(event, '运行和服务_SSH')">SSH</button>
+<button class="subtablinks" onclick="openSubTab(event, '运行和服务_定时任务')">定时任务</button>
+<button class="subtablinks" onclick="openSubTab(event, '运行和服务_内核')">内核</button>
+<button class="subtablinks" onclick="openSubTab(event, '运行和服务_时间同步')">时间同步</button>
+</div>
+<div id="运行和服务_网络" class="subtabcontent">
+    <h3>网络</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="运行和服务_防火墙" class="subtabcontent">
+    <h3>防火墙</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="运行和服务_SSH" class="subtabcontent">
+    <h3>SSH</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="运行和服务_定时任务" class="subtabcontent">
+    <h3>定时任务</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="运行和服务_内核" class="subtabcontent">
+    <h3>内核</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="运行和服务_时间同步" class="subtabcontent">
+    <h3>时间同步</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+</div>
+<div id="安全访问" class="tabcontent">
+<div class="subtabs">
+<button class="subtablinks" onclick="openSubTab(event, '安全访问_账户')">账户</button>
+<button class="subtablinks" onclick="openSubTab(event, '安全访问_口令')">口令</button>
+<button class="subtablinks" onclick="openSubTab(event, '安全访问_身份认证')">身份认证</button>
+<button class="subtablinks" onclick="openSubTab(event, '安全访问_访问控制')">访问控制</button>
+<button class="subtablinks" onclick="openSubTab(event, '安全访问_完整性')">完整性</button>
+<button class="subtablinks" onclick="openSubTab(event, '安全访问_数据安全')">数据安全</button>
+</div>
+<div id="安全访问_账户" class="subtabcontent">
+    <h3>账户</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="安全访问_口令" class="subtabcontent">
+    <h3>口令</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="安全访问_身份认证" class="subtabcontent">
+    <h3>身份认证</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="安全访问_访问控制" class="subtabcontent">
+    <h3>访问控制</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="安全访问_完整性" class="subtabcontent">
+    <h3>完整性</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="安全访问_数据安全" class="subtabcontent">
+    <h3>数据安全</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+</div>
+<div id="初始部署" class="tabcontent">
+<div class="subtabs">
+<button class="subtablinks" onclick="openSubTab(event, '初始部署_文件系统')">文件系统</button>
+<button class="subtablinks" onclick="openSubTab(event, '初始部署_软件')">软件</button>
+</div>
+<div id="初始部署_文件系统" class="subtabcontent">
+    <h3>文件系统</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="初始部署_软件" class="subtabcontent">
+    <h3>软件</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+</div>
+<div id="日志审计" class="tabcontent">
+<div class="subtabs">
+<button class="subtablinks" onclick="openSubTab(event, '日志审计_Audit')">Audit</button>
+<button class="subtablinks" onclick="openSubTab(event, '日志审计_Rsyslog')">Rsyslog</button>
+</div>
+<div id="日志审计_Audit" class="subtabcontent">
+    <h3>Audit</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+<div id="日志审计_Rsyslog" class="subtabcontent">
+    <h3>Rsyslog</h3>
+    <table><tr><th class="id">ID</th><th>描述</th><th class="level">级别</th><th class="status">状态</th><th>详情</th></tr>
+<tr><td class="id"></td><td></td><td class="level"></td><td class="fail"></td><td></td></tr>
+    </table>
+</div>
+</div>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks, subtablinks, subtabcontent;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+            // Reset subtablinks and subtabcontent
+            subtablinks = document.getElementsByClassName("subtablinks");
+            for (i = 0; i < subtablinks.length; i++) {
+                subtablinks[i].className = subtablinks[i].className.replace(" active", "");
+            }
+            subtabcontent = document.getElementsByClassName("subtabcontent");
+            for (i = 0; i < subtabcontent.length; i++) {
+                subtabcontent[i].style.display = "none";
+            }
+
+            // Activate the first subtab of the selected tab
+            var firstSubtab = document.getElementById(tabName).getElementsByClassName("subtablinks")[0];
+            if (firstSubtab) {
+                firstSubtab.click();
+            }
+        }
+
+        function openSubTab(evt, subTabName) {
+            var i, subtabcontent, subtablinks;
+            subtabcontent = document.getElementsByClassName("subtabcontent");
+            for (i = 0; i < subtabcontent.length; i++) {
+                subtabcontent[i].style.display = "none";
+            }
+            subtablinks = document.getElementsByClassName("subtablinks");
+            for (i = 0; i < subtablinks.length; i++) {
+                subtablinks[i].className = subtablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(subTabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // 默认打开第一个tab
+        document.getElementsByClassName("tablinks")[0].click();
+    </script>
+</body>
+</html>

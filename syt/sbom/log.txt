@@ -1,0 +1,12 @@
+yt@fedora:~/Downloads/sbom-tools/sbom-generator$ ./sbom-amd64-linux ../../openEuler-24.03-LTS-SP1-riscv64-dvd.iso -o spdx-json=sbom.json
+ ✔ Indexed ../../openEuler-24.03-LTS-SP1-riscv64-dvd.iso 
+ ✔ Cataloged packages      [0 packages]
+
+[0000] ERROR resolver repodata file failed, primary sqlite file of not found           
+yt@fedora:~/Downloads/sbom-tools/sbom-generator$ ./sbom-amd64-linux ../../openEuler-24.03-LTS-SP1-everything-riscv64-dvd.iso -o spdx-json=sbom.json
+ ✔ Indexed ../../openEuler-24.03-LTS-SP1-everything-riscv64-dvd.iso 
+ ✔ Cataloged packages      [0 packages]
+
+[0000] ERROR resolver repodata file failed, primary sqlite file of not found
+yt@fedora:~/Downloads/sbom-tools/sbom-generator$ 
+

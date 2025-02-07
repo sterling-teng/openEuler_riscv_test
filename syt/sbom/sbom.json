@@ -1,0 +1,16 @@
+{
+ "SPDXID": "SPDXRef-DOCUMENT",
+ "name": "../../openEuler-24.03-LTS-SP1-everything-riscv64-dvd.iso",
+ "spdxVersion": "SPDX-2.2",
+ "creationInfo": {
+  "created": "2025-02-08T03:24:57.328703374Z",
+  "creators": [
+   "Organization: Anchore, Inc",
+   "Tool: syft-[not provided]"
+  ],
+  "licenseListVersion": "3.17"
+ },
+ "dataLicense": "CC0-1.0",
+ "documentNamespace": "https://anchore.com/openEuler-24.03-LTS-SP1-everything-riscv64-dvd.iso-951dc690-f515-495d-af99-dc0195bec341",
+ "packages": []
+}
