@@ -1,0 +1,16 @@
+yt@fedora:~/oerv$ ls
+openEuler-24.03SP1-V1-base-lpi4a-devel-uefi.img.zst            openEuler-24.03SP1-V1-base-qemu-devel-uefi.qcow2.zst            openEuler-24.03SP1-V1-base-sg2042-devel-uefi.img.zst
+openEuler-24.03SP1-V1-base-lpi4a-devel-uefi.img.zst.sha256sum  openEuler-24.03SP1-V1-base-qemu-devel-uefi.qcow2.zst.sha256sum  openEuler-24.03SP1-V1-base-sg2042-devel-uefi.img.zst.sha256sum
+yt@fedora:~/oerv$ sha256sum openEuler-24.03SP1-V1-base-qemu-devel-uefi.qcow2.zst
+88c633a7f232a94be3d22247e2578b0a4c4f6c3e013cfa7c29f071c7d628dc58  openEuler-24.03SP1-V1-base-qemu-devel-uefi.qcow2.zst
+yt@fedora:~/oerv$ cat openEuler-24.03SP1-V1-base-qemu-devel-uefi.qcow2.zst.sha256sum
+88c633a7f232a94be3d22247e2578b0a4c4f6c3e013cfa7c29f071c7d628dc58  ./openEuler-24.03SP1-V1-base-qemu-devel-uefi.qcow2.zst
+yt@fedora:~/oerv$ sha256sum openEuler-24.03SP1-V1-base-lpi4a-devel-uefi.img.zst
+29a2a2e5a930c68325e2109ad4ad070a25dd45e25626b424cbc007f3608e495e  openEuler-24.03SP1-V1-base-lpi4a-devel-uefi.img.zst
+yt@fedora:~/oerv$ cat openEuler-24.03SP1-V1-base-lpi4a-devel-uefi.img.zst.sha256sum
+29a2a2e5a930c68325e2109ad4ad070a25dd45e25626b424cbc007f3608e495e  openEuler-24.03SP1-V1-base-lpi4a-devel-uefi.img.zst
+yt@fedora:~/oerv$ sha256sum openEuler-24.03SP1-V1-base-sg2042-devel-uefi.img.zst
+1202cbd2386c4960634413b61ee22e78e196ec0566914eab060756431feeb6cb  openEuler-24.03SP1-V1-base-sg2042-devel-uefi.img.zst
+yt@fedora:~/oerv$ cat openEuler-24.03SP1-V1-base-sg2042-devel-uefi.img.zst.sha256sum
+1202cbd2386c4960634413b61ee22e78e196ec0566914eab060756431feeb6cb  ./openEuler-24.03SP1-V1-base-sg2042-devel-uefi.img.zst
+yt@fedora:~/oerv$ 
